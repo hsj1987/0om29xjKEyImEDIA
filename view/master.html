@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="/img/fav.png" />
+<title>{block name='title'}{/block}</title>
+<link type="text/css" rel="stylesheet" href="/css/global.css?v={$version}" />{block name='head'}{/block}
+</head>
+<body>
+<div id="header">
+   
+</div>
+{block name='body'}{/block}
+
+<footer>
+    
+</footer>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/utils.js?v={$version}"></script>
+    <script type="text/javascript">
+    var url_params = {json_encode($url_params)};
+    var page_name = '{$page_name}';
+    </script>
+    {block name='foot'}{/block}
+</body>
+</html>
