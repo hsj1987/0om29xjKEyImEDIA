@@ -4,7 +4,7 @@ namespace app\controller\admin;
 use app\common\admin_controller_base;
 use common\helper\output;
 use common\db\db;
-use app\common\common;
+use app\common\user;
 
 class controller_login extends admin_controller_base
 {

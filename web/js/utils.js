@@ -101,14 +101,20 @@ var Utils = {
                             });
                         }
                     }
-                } else if (typeof options.success == 'function') {
+                } else {
                     if (!!options.tip) {
                         var msg = (typeof (options.tip) == 'string') ? options.tip : '操作成功';
-                        Utils.showAlertTip(msg, function() {
-                            options.success(result)
-                        });
+                        var callback = null;
+                        if (typeof options.success == 'function') {
+                            callback = function() {
+                                options.success(result);
+                            }
+                        }
+                        Utils.showAlertTip(msg, callback);
                     } else {
-                        options.success(result);
+                        if (typeof options.success == 'function') {
+                            options.success(result);
+                        }
                     }
                 }
             },

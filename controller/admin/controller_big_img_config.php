@@ -22,24 +22,40 @@ class controller_big_img_config extends admin_controller_base
         $text1 = $_POST['text1'];
         $text2 = $_POST['text2'];
         $img = $_POST['img'];
+        $need_upload = $_POST['need_upload'];
+
+        $db = db::main_db();
 
         // 上传图片
-        $path = APP_ROOT . '/web/upload/big_img';
-        $imgname = $id . '_' . time();
-        if(!file::upload_img_by_base64($img, $path, $imgname)) {
-            return output::err(1, '图片上传失败');
+        if ($need_upload) {
+            $path = APP_ROOT . '/web/upload/big_img';
+
+            // 删除原图
+            $old_img = $db->get('big_img_config', 'img', ['id' => $id]);
+            if ($old_img) {
+                @unlink($path . '/' . $old_img);
+            }
+            
+            // 上传新图
+            $imgname = $id . '_' . time();
+            $imgname = file::upload_img_by_base64($img, $path, $imgname);
+            if(!$imgname) {
+                return output::err(1, '图片上传失败');
+            }
         }
 
         // 保存数据
-        $db = db::main_db();
-        $db->update('big_img_config', [
+        $data = [
             'text1' => $text1,
-            'text2' => $text2,
-            'img' => $imgname
-        ], [
+            'text2' => $text2
+        ];
+        if ($need_upload) {
+            $data['img'] = $imgname;
+        }
+        $db->update('big_img_config', $data , [
             'id' => $id
         ]);
 
-        return output::ok();
+        return output::ok(['imgname' => $imgname]);
     }
 }

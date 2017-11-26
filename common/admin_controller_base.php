@@ -3,7 +3,7 @@
 namespace app\common;
 
 use common\helper\output;
-use app\common\common;
+use app\common\user;
 
 class admin_controller_base extends \common\frame\web\controller_base
 {

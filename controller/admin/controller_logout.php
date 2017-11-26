@@ -2,7 +2,7 @@
 namespace app\controller\admin;
 
 use app\common\admin_controller_base;
-use app\common\common;
+use app\common\user;
 use common\helper\output;
 
 class controller_logout extends admin_controller_base
