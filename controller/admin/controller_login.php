@@ -15,8 +15,8 @@ class controller_login extends admin_controller_base
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (common::check_pwd($username, $password)) {
-            common::login([
+        if (user::check_pwd($username, $password)) {
+            user::login([
                 'username' => $username
             ]);
             return output::ok([

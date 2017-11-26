@@ -83,7 +83,8 @@
         cardNo : '请输入有效的“{0}”',
         noRepeat : '“{0}”不能包括重复数据',
         telephone : '请输入有效的“{0}”',
-        address: '请输入有效的“{0}”'
+        address: '请输入有效的“{0}”',
+        img: '图片格式不正确'
     };
 
     function LikeValidate(options) {
@@ -630,5 +631,10 @@
     //地址
     $.validate.address = function (value) {
         return /^[\da-zA-Z\u4E00-\u9FA5]+$/.test(value);
+    }
+
+    // 图片
+    $.validate.img = function (value) {
+        return /\.(jpg|bmp|gif|png|jpeg)$/gi.test(value);
     }
 })(jQuery);

@@ -1,7 +1,48 @@
 {extends file='admin/master.html'} {block name='title'}大图配置{/block} {block name='head'}
 {/block} {block name='body'}
-
+    <div class="col-md-6">
+        <div class="form-horizontal" role="form" id="form">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><i>*</i> 页面</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="id">
+                            <option value="">< 请选择 ></option>
+                            {foreach $data as $item}
+                            <option value="{$item['id']}" data-img="{$item['img']}" data-text1="{$item['text1']}" data-text2="{$item['text2']}">{$item['name']}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><i>*</i> 文本1</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows="3" name="text1"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><i>*</i> 文本2</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows="3" name="text2"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"><i>*</i> 图片</label>
+                    <div class="col-md-9">
+                        <input type="file" name="img" accept="image/*">
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn green col-md-3" id="btn_submit">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {/block} 
 {block name='foot'}
- <script src="/js/p_change_pwd.js?v={$version}"></script>
+ <script src="js/p_big_img_config.js?v={$version}"></script>
 {/block}

@@ -431,6 +431,30 @@ var Utils = {
             length = $.trim(value).length;
         }
         return length;
+    },
+
+    /**
+     * 获取图片数据
+     * @param file 图片文件
+     * @param callback 回调函数
+     */
+    getImgData : function(file, callback) {
+        var reader = new FileReader();
+        reader.onload = function(re) {
+            callback(re.target.result);
+        }
+        reader.readAsDataURL(file);
+    },
+    
+    /**
+     * 清除form表单
+     */
+    clearForm : function(form) {
+        if (typeof(form) == 'string') {
+            form = $(form);
+        }
+
+        form.find('select,:text,textarea,:file').val('');
     }
 };
 

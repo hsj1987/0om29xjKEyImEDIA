@@ -127,3 +127,8 @@ html {
     text-align: center;
     font-size: 14px;
 }
+
+.control-label i {
+    color: #f00;
+    font-style: normal;
+}

@@ -14,7 +14,7 @@ class admin_controller_base extends \common\frame\web\controller_base
     public function on_init($action_type)
     {
         // 验证是否登录
-        if($this->need_valid_auth && !common::islogin()) {
+        if($this->need_valid_auth && !user::islogin()) {
             if ($action_type == 'render') {
                 return output::redirect('/admin/login.html');
             } else {
@@ -69,7 +69,7 @@ class admin_controller_base extends \common\frame\web\controller_base
             $this->assign('nav_pages', $pages);
 
             // 加载当前用户信息
-            $curr_username = common::curr_username();
+            $curr_username = user::curr_username();
             $this->assign('curr_username', $curr_username);
         }
         return output::ok();

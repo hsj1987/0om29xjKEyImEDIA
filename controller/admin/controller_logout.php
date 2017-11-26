@@ -12,7 +12,7 @@ class controller_logout extends admin_controller_base
 
     public function action_index()
     {
-        common::logout();
+        user::logout();
         return output::redirect('/admin/login.html');
     }
 }

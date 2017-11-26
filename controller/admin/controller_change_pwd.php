@@ -14,14 +14,14 @@ class controller_change_pwd extends admin_controller_base
 
     public function action_change_pwd()
     {
-        $username = common::curr_username();
+        $username = user::curr_username();
         $old_pwd = $_POST['old_pwd'];
         $new_pwd = $_POST['new_pwd'];
-        if(!common::check_pwd($username, $old_pwd)) {
+        if(!user::check_pwd($username, $old_pwd)) {
             return output::err(1, '原密码不正确');
         }
 
-        common::change_pwd($username, $new_pwd);
+        user::change_pwd($username, $new_pwd);
 
         return output::ok();
     }
