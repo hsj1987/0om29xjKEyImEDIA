@@ -6,13 +6,13 @@ use common\db\db;
 use common\helper\file;
 use common\helper\output;
 
-class controller_rtf_config extends admin_controller_base
+class controller_index_config extends admin_controller_base
 {
     
     public function action_index()
     {
         $db = db::main_db();
-        $data = $db->select('rtf_config', ['id', 'name']);
+        $data = $db->select('index_config', ['id']);
         $this->assign('data', $data);
     }
 
@@ -20,8 +20,8 @@ class controller_rtf_config extends admin_controller_base
     {
         $id = $_POST['id'];
         $db = db::main_db();
-        $contents = $db->get('rtf_config', 'contents', ['id' => $id]);
-        return output::ok($contents);
+        $data = $db->get('index_config', '*', ['id' => $id]);
+        return output::ok($data);
     }
 
     public function action_save()

@@ -8,10 +8,22 @@ var Page = {
 
         // 切换
         form.find('[name=id]').change(function(){
+            var id = $(this).val();
             if ($(this).val() == '') {
                 Utils.clearForm(form);
                 form.find('.fileinput').fileinput('clear');
             } else {
+                Utils.ajax({
+                    action: 'get_contents',
+                    data : {
+                        id : id
+                    },
+                    showLoading : false,
+                    success : function(result) {
+                        Utils.loadForm(form, result.data);
+                    }
+                });
+
                 var id = $(this).val();
                 var option = $(this).find('option[value='+id+']');
                 form.find('[name=text1]').val(option.attr('data-text1'));

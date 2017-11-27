@@ -51,7 +51,6 @@
                 <div class="page-logo">
                     <a href="/index.html">
                         <img src="/img/logo.png" alt="logo" class="logo-default" /> </a>
-                    <div class="menu-toggler sidebar-toggler"> </div>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -124,8 +123,7 @@
                                 {/if}
                                 <li class="nav-item {if $is_curr}active{/if}">
                                     <a href="{$item['url']}.html" class="nav-link nav-toggle">
-                                        <i class="icon-picture"></i>
-                                        <span class="title">{$item['name']}</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="title">{$item['name']}</span>
                                     </a>
                                 </li>
                             {/foreach}

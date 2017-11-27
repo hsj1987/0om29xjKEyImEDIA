@@ -461,6 +461,22 @@ var Utils = {
         }
 
         form.find('select,:text,textarea,:file').val('');
+    },
+
+    /**
+     * 加载表单
+     */
+    loadForm : function(form, data) {
+        if (typeof(form) == 'string') {
+            form = $(form);
+        }
+
+        $.each(data,function(k,v) {
+            var control = form.find('[name='+k+']');
+            if (control.is(':text,textarea')) {
+                control.val(v);
+            }
+        });
     }
 };
 
