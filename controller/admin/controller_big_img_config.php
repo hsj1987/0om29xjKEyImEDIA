@@ -22,12 +22,11 @@ class controller_big_img_config extends admin_controller_base
         $text1 = $_POST['text1'];
         $text2 = $_POST['text2'];
         $img = $_POST['img'];
-        $need_upload = $_POST['need_upload'];
 
         $db = db::main_db();
 
         // 上传图片
-        if ($need_upload) {
+        if ($img) {
             $path = APP_ROOT . '/web/upload/big_img';
 
             // 删除原图
@@ -37,9 +36,9 @@ class controller_big_img_config extends admin_controller_base
             }
             
             // 上传新图
-            $imgname = $id . '_' . time();
-            $imgname = file::upload_img_by_base64($img, $path, $imgname);
-            if(!$imgname) {
+            $img_name = $id . '_' . time();
+            $img_name = file::upload_img_by_base64($img, $path, $img_name);
+            if(!$img_name) {
                 return output::err(1, '图片上传失败');
             }
         }
@@ -49,13 +48,13 @@ class controller_big_img_config extends admin_controller_base
             'text1' => $text1,
             'text2' => $text2
         ];
-        if ($need_upload) {
-            $data['img'] = $imgname;
+        if ($img) {
+            $data['img'] = $img_name;
         }
         $db->update('big_img_config', $data , [
             'id' => $id
         ]);
 
-        return output::ok(['imgname' => $imgname]);
+        return output::ok(['img_name' => $img_name]);
     }
 }

@@ -10,9 +10,16 @@ var Page = {
         form.find('[name=id]').change(function(){
             var id = $(this).val();
             if ($(this).val() == '') {
+                $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                 Utils.clearForm(form);
-                form.find('.fileinput').fileinput('clear');
             } else {
+                if ($.inArray(id, ['1','2','3','6']) != -1) {
+                    $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
+                    $('#div_img,#div_logo,#div_name,#div_title,#div_link').addClass('show');
+                } else {
+                    $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
+                    $('#div_title,#div_link,#div_desc').addClass('show');
+                }
                 Utils.ajax({
                     action: 'get_contents',
                     data : {
@@ -20,54 +27,74 @@ var Page = {
                     },
                     showLoading : false,
                     success : function(result) {
+                        if (result.data.img) {
+                            result.data.img = '/upload/index_img/' + result.data.img;
+                        }
+                        if (result.data.logo) {
+                            result.data.logo = '/upload/index_logo/' + result.data.logo;
+                        }
                         Utils.loadForm(form, result.data);
                     }
                 });
-
-                var id = $(this).val();
-                var option = $(this).find('option[value='+id+']');
-                form.find('[name=text1]').val(option.attr('data-text1'));
-                form.find('[name=text2]').val(option.attr('data-text2'));
-                var img_url = option.attr('data-img');
-                if (Utils.isEmpty(img_url)) {
-                    form.find(':hidden[name="exists_img"]').val(0);
-                    form.find('.fileinput-preview').html('');
-                    form.find('.fileinput').addClass('fileinput-new').removeClass('fileinput-exists');
-                } else {
-                    form.find(':hidden[name="exists_img"]').val(1);
-                    form.find('.fileinput-preview').html('<img src="/upload/big_img/' + img_url + '"/>');
-                    form.find('.fileinput').addClass('fileinput-exists').removeClass('fileinput-new');
-                }
             }
         });
 
         // 保存
         form.find('#btn_submit').click(function() {
+            // 验证
+            var id = form.find('[name=id]').val();
             var inputs = [
                 {
                     name : 'id',
                     method : 'required'
-                },
-                {
-                    name : 'text1',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 256
-                    }]
-                },
-                {
-                    name : 'text2',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 256
-                    }]
                 }
             ];
-            var needUpload = form.find(':hidden[name="exists_img"]').val() != 1 || !form.find('.fileinput').hasClass('fileinput-exists') || form.find(':file').val();
-            if (needUpload) {
+            var isImgMode = $.inArray(id, ['1','2','3','6']) != -1;
+            if (isImgMode) {
+                inputs = Utils.pushImgValidateItem(inputs, 'img', true);
+                inputs = Utils.pushImgValidateItem(inputs, 'logo', true);
                 inputs.push({
-                    name : 'img',
-                    method : ['required', 'img']
+                    name : 'name',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 16
+                    }]
+                });
+                inputs.push({
+                    name : 'title',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 32
+                    }]
+                });
+                inputs.push({
+                    name : 'link',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 64
+                    }]
+                });
+            } else {
+                inputs.push({
+                        name : 'title',
+                        method : ['required', {
+                            method : 'maxLength',
+                            param : 32
+                        }]
+                });
+                inputs.push({
+                    name : 'link',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 64
+                    }]
+                });
+                inputs.push({
+                    name : 'desc',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 64
+                    }]
                 });
             }
             var res = form.validate({
@@ -77,37 +104,19 @@ var Page = {
                 return false;
             }
             
-            if (needUpload) {
-                Utils.getImgData(form.find(':file')[0].files[0], function(img_data) {
-                    res.data.img = img_data;
-                    res.data.need_upload = 1;
-                    Utils.ajax({
-                        action: 'save',
-                        data : res.data,
-                        tip : '保存成功！',
-                        success : function(result) {
-                            form.find(':hidden[name="exists_img"]').val(1);
-                            form.find(':file').val('');
-                            var option = form.find('[name=id] option[value='+res.data.id+']');
-                            option.attr('data-text1', res.data.text1);
-                            option.attr('data-text2', res.data.text2);
-                            option.attr('data-img', result.data.imgname);
-                        }
-                    });
-                });
-            } else {
-                res.data.need_upload = 0;
-                Utils.ajax({
-                    action: 'save',
-                    data : res.data,
-                    tip : '保存成功！',
-                    success : function(result) {
-                        var option = form.find('[name=id] option[value='+res.data.id+']');
-                        option.attr('data-text1', res.data.text1);
-                        option.attr('data-text2', res.data.text2);
-                    }
-                });
+            // 保存
+            if (isImgMode) {
+                res.data.img = form.find('#div_img .fileinput-preview img').attr('src');;
+                res.data.logo = form.find('#div_img .fileinput-preview logo').attr('src');;
             }
+            Utils.ajax({
+                action: 'save',
+                data : res.data,
+                tip : '保存成功！',
+                success : function(result) {
+                    form.find(':file').val('');
+                }
+            });
         });
     }
 };

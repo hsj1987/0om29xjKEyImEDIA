@@ -461,6 +461,7 @@ var Utils = {
         }
 
         form.find('select,:text,textarea,:file').val('');
+        form.find('.fileinput').fileinput('clear');
     },
 
     /**
@@ -475,8 +476,41 @@ var Utils = {
             var control = form.find('[name='+k+']');
             if (control.is(':text,textarea')) {
                 control.val(v);
+            } else if (control.is(':file')) {
+                var fileinput = control.closest('.fileinput');
+                if (fileinput.length) {
+                     if (Utils.isEmpty(v)) {
+                        fileinput.find('.fileinput-preview').html('');
+                        fileinput.addClass('fileinput-new').removeClass('fileinput-exists');
+                    } else {
+                        fileinput.find('.fileinput-preview').html('<img src="' + v + '"/>');
+                        fileinput.addClass('fileinput-exists').removeClass('fileinput-new');
+                    }
+                }
             }
         });
+    },
+
+    /**
+     * 获取图片上传验证项
+     */
+    pushImgValidateItem : function(inputs, name, required) {
+        control = $(':file[name='+name+']');
+        var fileinput = control.closest('.fileinput');
+        var method = [];
+        if (required && !fileinput.hasClass('fileinput-exists') ) {
+            method.push('required');
+        }
+        if (control.val()) {
+            method.push('img');
+        }
+        if (method.length) {
+            inputs.push({
+                name : name,
+                method : method
+            });
+        }
+        return inputs;
     }
 };
 
