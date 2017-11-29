@@ -1,0 +1,188 @@
+/*数据表格*/
+.c_tbl {
+    width: 100%;
+    margin-bottom: 0px;
+}
+.c_tbl_w_1024 {
+    min-width: 1024px !important;
+}
+.c_tbl tr{
+    border-left: solid 1px #e7ecf1;
+    border-top: solid 1px #e7ecf1;
+}
+.c_tbl td {
+    border-right: solid 1px #e7ecf1;
+    border-bottom: solid 1px #e7ecf1;
+    padding: 5px 10px;
+    height: 30px;
+    empty-cells: show;
+    word-break: break-all;
+}
+.c_nowrap{
+   white-space: nowrap;
+}
+.c_normal{
+   word-break: normal !important;
+}
+.c_tbl thead {
+    text-align: center;
+    font-weight: bold;
+}
+.c_tbl_margin_0 {
+    margin-bottom: 0;
+}
+.c_tbl .c_tbl_head {
+    font-weight: bold;
+}
+.c_tbl .c_td_del {
+    display: table-cell;
+    background: url(../img/ico_del.png) no-repeat center center #fff;
+    cursor: pointer !important;
+}
+.c_td_del_1 {
+    display: inline-block;
+    background: url(../img/ico_del.png) no-repeat center center #fff;
+    cursor: pointer !important;
+    width: 40px;
+    height: 38px;
+    right: 1px;
+    top: 1px;
+    line-height: 38px;
+    text-align: center;
+}
+.c_tbl td.c_td_num {
+    text-align:right;
+}
+.c_tbl td.c_td_nbr{
+    border-right:0 none;
+}
+.c_tbl td.c_td_center{
+    text-align:center;
+}
+.c_tbl td.c_td_del_hd{
+    text-align:center;
+}
+.c_tbl_del_hide .c_td_del,.c_tbl_del_hide .c_td_del_hd,.c_tbl_edit_hide .c_tbl_td_edit,.c_tbl_chk_hide .c_tbl_td_chk{
+    display:none;
+}
+.c_tbl .controls {
+    margin-left: 0 !important;
+}
+table.c_tbl>tbody>tr ,table.c_tbl>tbody>tr:hover{
+    cursor: default;
+}
+table.c_tbl_hover>tbody>tr:hover{
+    cursor: pointer;
+    color: rgb(230,70,115);
+}
+table.c_tbl_hover[select='cell']>tbody>tr:hover {
+    cursor: inherit;
+    color: inherit;
+}
+table.c_tbl_hover[select='cell']>tbody>tr>td:hover {
+    cursor: pointer;
+    color: rgb(230, 70, 115);
+}
+table.c_tbl>tbody>tr.c_tbl_nodata:hover,table.c_tbl>tbody>tr>td.c_td_no_hover:hover{
+    cursor:default !important;
+    color:inherit;
+}
+tr.c_tbl_nodata {
+    text-align: center;
+}
+.c_tbl_cont tr.c_tbl_nodata td{
+    cursor: default;
+}
+table.c_tbl>tbody>tr:nth-of-type(odd) {
+    background-color: #fbfcfd;
+}
+table.c_tbl>tbody>tr:hover {
+    background-color: #eef1f5;
+}
+.c_tbl .c_tbl_head td.c_tbl_sort,.c_tbl thead td.c_tbl_sort{
+    padding-right:20px;
+    padding-top: 10px;
+    cursor:pointer !important;
+    background:url("../img/sort_both.png") no-repeat center right;
+}
+.c_tbl .c_tbl_head td.c_tbl_sort_asc{
+    background-image:url("../img/sort_asc.png");
+    }
+.c_tbl .c_tbl_head td.c_tbl_sort_desc{
+    background-image:url("../img/sort_desc.png");
+}
+.c_tbl input[type='number']{
+    width:95%;
+    padding-left:5%;
+    padding-right:0;
+}
+.c_tbl input[type='text']{
+    width:90%;
+    padding-left:5%;
+    padding-right:5%;
+}
+.c_tbl[select='row']>tbody>tr[selected='selected']{
+    background: rgb(230,70,115);
+    color: white;
+}
+.c_tbl[select='row']>tbody>tr[selected='selected']>td{
+    background: inherit;
+}
+.c_tbl[select='cell']>tbody>tr>td[selected='selected'] {
+    background: rgb(230, 70, 115);
+    color: white;
+}
+.c_tbl[select='cell']>tbody>tr>td[selected='selected']:hover {
+    color: white;
+}
+.c_tbl_cont {
+    overflow: auto;
+    max-height: 600px;
+    margin-bottom: 20px;
+}
+.c_tbl_cont table{
+    margin-top: -38px;
+}
+.c_tbl_cont table thead td{
+    white-space: nowrap;
+}
+.c_tbl_cont td{
+    min-width: 42px;
+}
+.c_tbl_thead {
+  /*white-space: nowrap;*/
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  height: 40px;
+}
+.c_tbl_thead table {
+  width: 100%;
+  position: absolute;
+  table-layout: fixed;
+  top: 0;
+  left: 0;
+}
+.c_tbl_thead tr td{
+  vertical-align: middle !important;
+  border-bottom-width: 2px;
+  white-space: nowrap;
+}
+.c_tbl_td_padding_sort {
+    padding-right : 20px !important;
+}
+@media screen and (max-width: 768px) {
+    .c_tbl_cont>table {
+        min-width: 600px;
+    }
+    .c_tbl_cont {
+        max-width: 760px;
+        max-height: 400px;
+    }
+    .input-mini, .input-xxs {
+      width: 35px!important;
+    }
+    tr.c_tbl_nodata {
+        text-align: left;
+    }
+}

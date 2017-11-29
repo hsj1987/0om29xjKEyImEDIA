@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
-.img_h2 {
-    width: 128px; height: 216px; line-height:216px;
-}
-.img_h1 {
+#div_img .fileinput-preview {
     width: 128px; height: 108px; line-height:108px;
+}
+#div_img .img_h2 {
+    width: 128px; height: 216px; line-height:216px;
 }

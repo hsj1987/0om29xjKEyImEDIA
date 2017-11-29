@@ -16,12 +16,14 @@ var Page = {
                 if ($.inArray(id, ['1','2','3','6']) != -1) {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link').addClass('show');
+                    $('#div_img .fileinput-preview').toggleClass('img_h2', id == 1);
+                    $('#div_img .img_size').text(id == 1 ? '640*1080' : '640*540');
                 } else {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                     $('#div_title,#div_link,#div_desc').addClass('show');
                 }
                 Utils.ajax({
-                    action: 'get_contents',
+                    action: 'get',
                     data : {
                         id : id
                     },
@@ -31,7 +33,7 @@ var Page = {
                             result.data.img = '/upload/index_img/' + result.data.img;
                         }
                         if (result.data.logo) {
-                            result.data.logo = '/upload/index_logo/' + result.data.logo;
+                            result.data.logo = '/upload/index_img/' + result.data.logo;
                         }
                         Utils.loadForm(form, result.data);
                     }
@@ -106,8 +108,12 @@ var Page = {
             
             // 保存
             if (isImgMode) {
-                res.data.img = form.find('#div_img .fileinput-preview img').attr('src');;
-                res.data.logo = form.find('#div_img .fileinput-preview logo').attr('src');;
+                if (form.find('#div_img :file').val()) {
+                    res.data.img = form.find('#div_img .fileinput-preview img').attr('src');
+                }
+                if (form.find('#div_logo :file').val()) {
+                    res.data.logo = form.find('#div_logo .fileinput-preview img').attr('src');
+                }
             }
             Utils.ajax({
                 action: 'save',

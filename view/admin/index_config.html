@@ -20,7 +20,7 @@
                     <label class="col-md-3 control-label"><i>*</i> 图片</label>
                     <div class="col-md-9">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <div class="fileinput-preview thumbnail img_h1" data-trigger="fileinput"></div>
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
                             <div>
                                 <span class="btn default btn-sm btn-file">
                                     <span class="fileinput-new"> 选择图片 </span>
@@ -30,7 +30,7 @@
                                 <a href="javascript:;" class="btn default btn-sm fileinput-exists" data-dismiss="fileinput"> 移除 </a>
                             </div>
                         </div>
-                        <div>上传图片尺寸：1920*968</div>
+                        <div>上传图片尺寸：<span class="img_size">640*1080</span></div>
                     </div>
                 </div>
                 <div class="form-group hide" id="div_logo">
@@ -53,25 +53,25 @@
                 <div class="form-group hide" id="div_name">
                     <label class="col-md-3 control-label"><i>*</i> 名称</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="name"/>
+                        <input type="text" class="form-control" name="name" maxlength="16"/>
                     </div>
                 </div>
                 <div class="form-group hide" id="div_title">
                     <label class="col-md-3 control-label"><i>*</i> 标题</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="2" name="title"></textarea>
+                        <textarea class="form-control" rows="2" name="title" maxlength="32"></textarea>
                     </div>
                 </div>
                 <div class="form-group hide" id="div_link">
                     <label class="col-md-3 control-label"><i>*</i> 链接</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="link"/>
+                        <input type="text" class="form-control" name="link" maxlength="64"/>
                     </div>
                 </div>
                 <div class="form-group hide" id="div_desc">
                     <label class="col-md-3 control-label"><i>*</i> 描述</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="3" name="desc"></textarea>
+                        <textarea class="form-control" rows="3" name="desc" maxlength="64"></textarea>
                     </div>
                 </div>
             </div>

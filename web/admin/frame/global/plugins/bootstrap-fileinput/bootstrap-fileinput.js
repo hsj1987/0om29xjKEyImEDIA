@@ -70,9 +70,9 @@
       return
     }
 
-    this.$hidden.val('')
-    this.$hidden.attr('name', '')
-    this.$input.attr('name', this.name)
+    //this.$hidden.val('')
+    //this.$hidden.attr('name', '')
+    //this.$input.attr('name', this.name)
 
     var file = files[0]
 
@@ -111,9 +111,9 @@
   Fileinput.prototype.clear = function(e) {
     if (e) e.preventDefault()
     
-    this.$hidden.val('')
-    this.$hidden.attr('name', this.name)
-    this.$input.attr('name', '')
+    //this.$hidden.val('')
+    //this.$hidden.attr('name', this.name)
+    //this.$input.attr('name', '')
 
     //ie8+ doesn't support changing the value of input with type=file so clone instead
     if (isIE) { 

@@ -1,0 +1,139 @@
+/*分页*/
+
+.c_page_first {
+    border-left: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.c_page_prev {
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.c_page_center {
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    background-color: #EEEEEE;
+}
+
+.c_page_next {
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.c_page_last {
+    border-left: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-radius: 0px 5px 5px 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.c_page_go,.c_page_info {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.c_page_go .c_page_go_txt {
+    width: 52px;
+    height: 30px;
+    line-height: 24px;
+    vertical-align: top;
+    text-align:center;
+    padding-left:2px;
+    padding-right:2px;
+    margin: 0;
+}
+
+.c_page_go .c_page_go_a {
+    border-radius: 5px;
+    line-height: 20px;
+    padding: 5px 10px;
+    background:#4BBAAC;
+    color:#fff;
+}
+.c_page_go .c_page_go_a:hover {
+    color:#fff;
+}
+
+.c_page {
+    height: 32px;
+    vertical-align: middle;
+}
+
+.c_page_info {
+    padding-left: 10px;
+}
+.c_page_perCount,.c_page_recordCount{
+    color: #666;
+}
+
+.c_tablehead {
+    color: #868686;
+    text-decoration: none;
+}
+
+.c_tablehead:hover {
+    color: #868686;
+    text-decoration: none;
+}
+
+.c_page A,.c_page_go A {
+    color: #868686;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.c_page A:hover,.c_page_go A:hover {
+    color: rgb(232, 70, 115);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.c_table_sort_both {
+    background-image: url("../adminlab/assets/data-tables/images/sort_both.png");
+    width: 19px;
+    height: 19px;
+}
+
+.c_table_sort_asc {
+    background-image: url("../adminlab/assets/data-tables/images/sort_asc.png");
+    width: 19px;
+    height: 19px;
+}
+
+.c_table_sort_desc {
+    background-image: url("../adminlab/assets/data-tables/images/sort_desc.png");
+    width: 19px;
+    height: 19px;
+}
+
+.c_pager_bar{
+    margin-bottom: 20px;
+    display:none;
+}
+.c_pager {
+    /*white-space: nowrap;*/
+    cursor: pointer;
+}

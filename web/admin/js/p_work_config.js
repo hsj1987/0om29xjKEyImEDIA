@@ -10,7 +10,7 @@ var Page = {
         form.find('[name=id]').change(function() {
             Common.loadForm(form, $(this).val(), function(data) {
                 if (data.img) {
-                    data.img = '/upload/big_img/' + data.img;
+                    data.img = '/upload/work_img/' + data.img;
                 }
                 return data;
             });
@@ -18,27 +18,22 @@ var Page = {
 
         // 保存
         form.find('#btn_submit').click(function() {
+            // 验证
+            var id = form.find('[name=id]').val();
             var inputs = [
                 {
                     name : 'id',
                     method : 'required'
-                },
-                {
-                    name : 'text1',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 256
-                    }]
-                },
-                {
-                    name : 'text2',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 256
-                    }]
                 }
             ];
             inputs = Utils.pushImgValidateItem(inputs, 'img', true);
+            inputs.push({
+                name : 'title',
+                method : ['required', {
+                    method : 'maxLength',
+                    param : 32
+                }]
+            });
             var res = form.validate({
                 inputs: inputs
             });

@@ -3,8 +3,8 @@ namespace app\controller\admin;
 
 use app\common\admin_controller_base;
 use common\db\db;
-use common\helper\file;
 use common\helper\output;
+use app\common\common;
 
 class controller_index_config extends admin_controller_base
 {
@@ -16,7 +16,7 @@ class controller_index_config extends admin_controller_base
         $this->assign('data', $data);
     }
 
-    public function action_get_contents()
+    public function action_get()
     {
         $id = $_POST['id'];
         $db = db::main_db();
@@ -26,17 +26,8 @@ class controller_index_config extends admin_controller_base
 
     public function action_save()
     {
-        $id = $_POST['id'];
-        $contents = $_POST['contents'];
-
-        // 保存数据
-        $db = db::main_db();
-        $data = [
-            'contents' => $contents,
-        ];
-        $db->update('rtf_config', $data , [
-            'id' => $id
-        ]);
-        return output::ok();
+        $img_path = APP_ROOT . '/web/upload/index_img';
+        $res = common::save_data('index_config', $_POST, 'id', ['name', 'title', 'link', 'desc'], ['img', 'logo'], $img_path);
+        return $res;
     }
 }

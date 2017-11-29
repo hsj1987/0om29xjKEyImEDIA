@@ -3,3 +3,9 @@
 .c_page_body {
     padding-top: 20px;
 }
+.c_detail_close {
+    width: 42px;
+    height: 32px;
+    cursor: pointer;
+    background: url(../img/close_btn.png) no-repeat center center;
+}
