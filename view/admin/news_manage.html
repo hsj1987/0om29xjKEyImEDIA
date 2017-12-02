@@ -1,0 +1,104 @@
+{extends file='admin/master.html'} {block name='title'}新闻管理{/block} {block name='head'}
+<link href="/admin/frame/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css">
+<link href="/admin/plugins/datatbl/css/datatbl.css" rel="stylesheet" type="text/css" />
+<link href="/admin/plugins/datatbl/css/pager.css" rel="stylesheet" type="text/css" />
+{/block} {block name='body'}
+	<div class="col-md-12"  id="data_list">
+		<!-- BEGIN EXAMPLE TABLE PORTLET-->
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption font-dark">
+					<span class="caption-subject sbold font-green">数据列表</span>
+				</div>
+				<div class="pull-right">
+					<div class="btn-group">
+						<button id="btn_add" class="btn sbold green">新增</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="portlet-body">
+				<div class="c_tbl_html">
+					<div class="c_tbl_body">
+						<div class="table-container c_tbl_cont">
+							<table class="table c_tbl table-bordered c_tbl_hover" id="tbl_data_list">
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="c_pager_bar clearfix">
+						<span class="c_pager"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-12 c_info_box hide"  id="data_detail">
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption">
+					<span class="caption-subject font-green sbold caption-title">详情</span>
+				</div>
+				<div class="pull-right c_detail_close"></div>
+			</div>
+			<div class="portlet-body form">
+				<div class="form-horizontal" role="form">
+					<div class="form-body">
+						<div class="form-group">
+							<label class="col-md-2 control-label"><i>*</i> 标题</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="title" maxlength="64"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"><i>*</i> 摘要</label>
+							<div class="col-md-9">
+								<textarea rows="3" class="form-control" name="summary" maxlength="256"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"><i>*</i> 内容</label>
+							<div class="col-md-9">
+								<textarea class="form-control" name="contents" is_summernote="1"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">是否显示</label>
+							<div class="col-md-9">
+								<div class="checkbox-list">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="is_display" value="1"/>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">排序编号</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="sort_num"/>
+							</div>
+						</div>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green" id="btn_submit">保存</button>
+									<button type="button" class="btn default" id="btn_cancel">取消</button>
+									<button type="button" class="btn default pull-right" id="btn_delete">删除</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>						
+		</div>
+	</div>
+{/block} 
+{block name='foot'}
+<script src="/admin/frame/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+<script src="/admin/frame/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js" type="text/javascript"></script>
+<script src="/admin/plugins/datatbl/js/datatbl.js?v={$version}"></script>
+<script src="/admin/plugins/datatbl/js/pager.js?v={$version}"></script>
+<script src="js/p_news_manage.js?v={$version}"></script>
+{/block}

@@ -23,22 +23,27 @@ var Page = {
                 params : {
                     category_id : $('#data_filter button.green').attr('cid')
                 },
-                columns : [{
+                columns : [
+                {
+                    column : 'logo',
+                    label : 'LOGO',
+                    width: '10%',
+                    class: 'text-center',
+                    content : function(v) {
+                        return '<img src="' + Page.detail.getImgPath(v.logo)  +'"/>';
+                    }
+                },{
                     column : 'id',
                     label : 'ID',
                     width: '5%'
                 }, {
-                    column : 'title',
-                    label : '标题',
+                    column : 'name',
+                    label : '名称',
                     width: '44%'
                 }, {
                     column : 'is_display',
                     label : '是否显示',
                     width: '5%'
-                }, {
-                    column : 'is_in_index',
-                    label : '是否在work主页显示',
-                    width: '10%'
                 }, {
                     column : 'create_time',
                     label : '创建时间',
@@ -86,7 +91,6 @@ var Page = {
 
         init : function() {
             this.view = $('#data_detail');
-            this.view.find('[name=contents]').summernote({height: 300, lang: 'zh-CN'});
 
             // 取消
             $('#btn_cancel,.c_detail_close').click(function(){
@@ -102,26 +106,14 @@ var Page = {
             $('#btn_delete').click(function(){
                 Page.detail.delete();
             });
-
-            // 切换是否显示在主页
-            this.view.find('[name=is_in_index]').change(function() {
-                Page.detail.toggleInIndex($(this).prop('checked'));
-            });
         },
 
         getChecked : function(name) {
             return this.view.find('[name=' + name + ']').prop('checked') ? 1 : 0;
         },
 
-        toggleInIndex : function(show) {
-            if (typeof(show) == 'undefined') {
-                show = this.getChecked('id_in_index');
-            }
-            this.view.find('#div_img,#div_logo,#div_name,#div_title').toggleClass('hide', show !=1);
-        },
-
         getImgPath : function(name) {
-            return Utils.isEmpty(name) ? '' : '/upload/work_img/' + name;
+            return Utils.isEmpty(name) ? '' : '/upload/client_img/' + name;
         },
 
         load : function(action, id) {
@@ -132,7 +124,6 @@ var Page = {
                     is_display : 1,
                     sort_num : 100000
                 });
-                Page.detail.toggleInIndex(0);
                 Page.toggleView('add');
             } else {
                 this.id = id;
@@ -140,11 +131,8 @@ var Page = {
                     action : 'get',
                     data : {id : id},
                     success : function(result) {
-                        result.data.img = Page.detail.getImgPath(result.data.img);
-                        result.data.index_img = Page.detail.getImgPath(result.data.index_img);
-                        result.data.index_logo = Page.detail.getImgPath(result.data.index_logo);
+                        result.data.logo = Page.detail.getImgPath(result.data.logo);
                         Utils.loadForm(Page.detail.view, result.data);
-                        Page.detail.toggleInIndex(result.data.is_in_index);
                         Page.toggleView('edit');
                     }
                 });
@@ -158,50 +146,21 @@ var Page = {
                     method : 'required'
                 },
                 {
-                    name : 'title',
-                    method : ['required', {
+                    name : 'name',
+                    method : [{
                         method : 'maxLength',
                         param : 64
                     }]
                 },
                 {
-                    name : 'img',
+                    name : 'logo',
                     method : ['required', 'img']
-                },
-                {
-                    name : 'contents',
-                    method : 'required'
                 },
                 {
                     name : 'sort_num',
                     medhod : 'int1'
                 }
             ];
-            var is_in_index = this.getChecked('is_in_index');
-            if (is_in_index) {
-                inputs.push({
-                    name : 'index_img',
-                    method : ['required', 'img']
-                });
-                inputs.push({
-                    name : 'index_logo',
-                    method : ['required', 'img']
-                });
-                inputs.push({
-                    name : 'index_name',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 16
-                    }]
-                });
-                inputs.push({
-                    name : 'index_title',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 32
-                    }]
-                });
-            }
             var res = this.view.validate({
                 inputs: inputs
             });
@@ -213,7 +172,6 @@ var Page = {
                 res.data.id = this.id;
             }
             res.data.is_display = this.getChecked('is_display');
-            res.data.is_in_index = this.getChecked('is_in_index');
 
             Utils.ajax({
                 action: 'save',

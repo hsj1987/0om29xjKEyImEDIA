@@ -588,8 +588,14 @@ var Utils = {
         }
 
         form.find('select,:text,textarea,:file').val('');
-        form.find('.fileinput').fileinput('clear');
-        form.find('[is_summernote]').code('');
+        var fileinputs = form.find('.fileinput');
+        if (fileinputs.length) {
+            fileinputs.fileinput('clear');
+        }
+        var summernotes = form.find('[is_summernote]');
+        if (summernotes.length) {
+            summernotes.code('');
+        }
         form.find(':checkbox,:radio').prop('checked', false).closest('span').removeClass('checked');
     },
 

@@ -21,7 +21,7 @@ var Page = {
             $this.datatbl = $('#tbl_data_list').datatbl({
                 action : 'get_list',
                 params : {
-                    category_id : $('#data_filter button.green').attr('cid')
+                    area_id : $('#data_filter button.green').attr('aid')
                 },
                 columns : [{
                     column : 'id',
@@ -30,15 +30,11 @@ var Page = {
                 }, {
                     column : 'title',
                     label : '标题',
-                    width: '44%'
+                    width: '54%'
                 }, {
                     column : 'is_display',
                     label : '是否显示',
                     width: '5%'
-                }, {
-                    column : 'is_in_index',
-                    label : '是否在work主页显示',
-                    width: '10%'
                 }, {
                     column : 'create_time',
                     label : '创建时间',
@@ -50,15 +46,15 @@ var Page = {
                 }]
             });
             
-            // 切换分类
-            var category_btns = $('#data_filter button');
-            category_btns.click(function() {
+            // 切换城市
+            var area_btns = $('#data_filter button');
+            area_btns.click(function() {
                 var params = {
-                    category_id : $(this).attr('cid')
+                    area_id : $(this).attr('aid')
                 };
                 $this.datatbl.setParams(params);
                 $this.datatbl.load(1);
-                category_btns.removeClass('green').removeClass('default');
+                area_btns.removeClass('green').removeClass('default');
                 $(this).addClass('green');
             });
 
@@ -86,7 +82,6 @@ var Page = {
 
         init : function() {
             this.view = $('#data_detail');
-            this.view.find('[name=contents]').summernote({height: 300, lang: 'zh-CN'});
 
             // 取消
             $('#btn_cancel,.c_detail_close').click(function(){
@@ -102,37 +97,20 @@ var Page = {
             $('#btn_delete').click(function(){
                 Page.detail.delete();
             });
-
-            // 切换是否显示在主页
-            this.view.find('[name=is_in_index]').change(function() {
-                Page.detail.toggleInIndex($(this).prop('checked'));
-            });
         },
 
         getChecked : function(name) {
             return this.view.find('[name=' + name + ']').prop('checked') ? 1 : 0;
         },
 
-        toggleInIndex : function(show) {
-            if (typeof(show) == 'undefined') {
-                show = this.getChecked('id_in_index');
-            }
-            this.view.find('#div_img,#div_logo,#div_name,#div_title').toggleClass('hide', show !=1);
-        },
-
-        getImgPath : function(name) {
-            return Utils.isEmpty(name) ? '' : '/upload/work_img/' + name;
-        },
-
         load : function(action, id) {
             Utils.clearForm(Page.detail.view);
             if (action == 'add') {
                 Utils.loadForm(Page.detail.view, {
-                    category_id : $('#data_filter button.green').attr('cid'),
+                    area_id : $('#data_filter button.green').attr('aid'),
                     is_display : 1,
                     sort_num : 100000
                 });
-                Page.detail.toggleInIndex(0);
                 Page.toggleView('add');
             } else {
                 this.id = id;
@@ -140,11 +118,7 @@ var Page = {
                     action : 'get',
                     data : {id : id},
                     success : function(result) {
-                        result.data.img = Page.detail.getImgPath(result.data.img);
-                        result.data.index_img = Page.detail.getImgPath(result.data.index_img);
-                        result.data.index_logo = Page.detail.getImgPath(result.data.index_logo);
                         Utils.loadForm(Page.detail.view, result.data);
-                        Page.detail.toggleInIndex(result.data.is_in_index);
                         Page.toggleView('edit');
                     }
                 });
@@ -154,7 +128,7 @@ var Page = {
         save : function() {
             var inputs = [
                 {
-                    name : 'category_id',
+                    name : 'area_id',
                     method : 'required'
                 },
                 {
@@ -165,43 +139,17 @@ var Page = {
                     }]
                 },
                 {
-                    name : 'img',
-                    method : ['required', 'img']
-                },
-                {
-                    name : 'contents',
-                    method : 'required'
+                    name : 'desc',
+                    method : ['required', {
+                        method : 'maxLength',
+                        param : 1024
+                    }]
                 },
                 {
                     name : 'sort_num',
                     medhod : 'int1'
                 }
             ];
-            var is_in_index = this.getChecked('is_in_index');
-            if (is_in_index) {
-                inputs.push({
-                    name : 'index_img',
-                    method : ['required', 'img']
-                });
-                inputs.push({
-                    name : 'index_logo',
-                    method : ['required', 'img']
-                });
-                inputs.push({
-                    name : 'index_name',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 16
-                    }]
-                });
-                inputs.push({
-                    name : 'index_title',
-                    method : ['required', {
-                        method : 'maxLength',
-                        param : 32
-                    }]
-                });
-            }
             var res = this.view.validate({
                 inputs: inputs
             });
@@ -213,7 +161,6 @@ var Page = {
                 res.data.id = this.id;
             }
             res.data.is_display = this.getChecked('is_display');
-            res.data.is_in_index = this.getChecked('is_in_index');
 
             Utils.ajax({
                 action: 'save',

@@ -15,6 +15,8 @@
  *        label:表头名称,
  *        sort:是否排序（默认为false,可选true、false、desc、asc）,
  *        tdAttr:td属性,
+ *        width:宽度
+ *        class:class样式
  *        noHtmlEncode:false,不HTML转义
  *        content:算定义内容处理函数
  *       },
@@ -373,6 +375,9 @@
                     var tdAttrs = $.extend({},cv.tdAttr);
                     if (typeof(cv.width) != "undefined" && cv.width != null) {
                         tdAttrs.width = cv.width;
+                    }
+                    if (typeof(cv.class) != "undefined" && cv.class != null) {
+                        tdAttrs.class = cv.class;
                     }
                     if ($this.settings.cursorDefault) {// 去掉td的手型
                         var curDef = 'cursor: default;';
