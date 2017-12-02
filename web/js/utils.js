@@ -278,6 +278,133 @@ var Utils = {
     },
 
     /**
+     * 提示
+     * 
+     * @param msg
+     *            提示信息
+     * @param okFn
+     *            确定回调函数
+     * @param cancelFn
+     *            取消回调函数
+     * @param title
+     *            标题
+     */
+    showConfirm : function(msg, okFn, cancelFn, title) {
+        Utils.showAlertOrConfirmOrPrompt(msg, okFn, cancelFn, title, 'confirm');
+    },
+
+    /**
+     * 提示
+     * 
+     * @param msg
+     *            提示信息
+     * @param okFn
+     *            确定回调函数
+     * @param cancelFn
+     *            取消回调函数
+     * @param title
+     *            标题
+     * @param type
+     *            类型（alert、confirm或prompt）
+     * @param val
+     *            默认的输入值（用于type为prompt）
+     */
+    showAlertOrConfirmOrPrompt : function(msg, okFn, cancelFn, title, type, val) {
+        type = Utils.get(type, 'alert');
+        title = Utils.get(title, type == 'alert' ? '提示' : (type == 'prompt' ? '设置' : '请确认'));
+        val = Utils.get(val, '');
+        var modal = $('#c_alert');
+        if (type == 'prompt') {
+            var body = '<div class="form-horizontal" role="form">';
+            body += '<div class="form-body">';
+            body += '<div class="form-group">';
+            body += '<label class="' + (Utils.getLength(msg, true) > 17 ? 'col-sm-4' : 'col-sm-3') + ' control-label">' + msg + '</label>';
+            body += '<div class="col-sm-7">';
+            body += '<input name="val" type="text" class="form-control" value="' + val + '" />';
+            body += '</div></div></div></div>';
+        } else {
+            var body = '<p>' + msg + '</p>';
+        }
+        if (modal.length == 0) {
+            var html = '<div id="c_alert" class="modal fade">';
+            html += '<div class="modal-dialog modal-sm">';
+            html += '<div class="modal-content">';
+            html += '<div class="modal-header">';
+            html += '<button type="button" class="close" data-dismiss="modal" name="cancel">×</button>';
+            if (type == 'prompt') {
+                html += '<h4 class="modal-title font-green">' + title + '</h4></div>';
+            } else {
+                html += '<h4 class="modal-title">' + title + '</h4></div>';
+            }
+            html += '<div class="modal-body">';
+            html += body;
+            html += '</div>';
+            html += '<div class="modal-footer">';
+            html += '<button data-dismiss="modal" class="btn default" name="cancel">取消</button>';
+            if (type == 'prompt') {
+                html += '<button class="btn green" name="confirm">确定</button>';
+            } else {
+                html += '<button data-dismiss="modal" class="btn green" name="confirm">确定</button>';
+            }
+            html += '</div></div></div></div>';
+            $('body').append(html);
+            modal = $('#c_alert');
+        } else {
+            var titleH4 = modal.find('.modal-header>h4');
+            titleH4.toggleClass('font-green', type == 'prompt');
+            modal.find('.modal-body').html(body);
+            titleH4.html(title);
+        }
+        modal.find('.modal-footer [name="cancel"]').toggle(type != 'alert');
+
+        // 事件绑定
+        modal.find('.modal-footer [name=confirm]').unbind('click').one('click', function() {
+            if (typeof okFn == 'function') {
+                if (type == 'prompt') {
+                    okFn(modal.find('[name="val"]').val(), modal);
+                } else {
+                    okFn();
+                }
+            }
+        });
+        modal.find('.modal-footer [name=cancel]').unbind('click').one('click', function() {
+            if (typeof cancelFn == 'function') {
+                cancelFn();
+            }
+        });
+
+        // 显示
+        Utils.showModal(modal, null, {
+            backdrop : type == 'confirm' ? 'static' : true
+        });
+
+        return modal;
+    },
+
+    /**
+     * 显示子模式窗口（就是z-index更大的模式窗口）
+     * 
+     * @param modalDialog
+     *            dialog jquery 对象 或 string
+     * @param layer
+     *            窗口层级
+     * @param modalOptions
+     *            modal参数
+     */
+    showModal : function(modal, layer, modalOptions) {
+        if (layer == undefined)
+            layer = $('.modal-backdrop').length;
+        var bgIndex = 10060 + layer * 20;
+        if (typeof (modal) == 'string') {
+            modal = $(modal);
+        }
+        modalOptions = !!modalOptions ? modalOptions : {};
+        modal.modal(modalOptions).data('bs.modal').$backdrop.css("z-index", bgIndex);
+        modal.css("z-index", bgIndex + 1);
+    },
+
+
+    /**
      * 页面跳转
      * 
      * @param url
@@ -462,6 +589,8 @@ var Utils = {
 
         form.find('select,:text,textarea,:file').val('');
         form.find('.fileinput').fileinput('clear');
+        form.find('[is_summernote]').code('');
+        form.find(':checkbox,:radio').prop('checked', false).closest('span').removeClass('checked');
     },
 
     /**
@@ -474,19 +603,26 @@ var Utils = {
 
         $.each(data,function(k,v) {
             var control = form.find('[name='+k+']');
-            if (control.is(':text,textarea')) {
+            if (control.attr('is_summernote') == 1) {
+                control.code(v);
+            } else if (control.is(':text,textarea,select')) {
                 control.val(v);
             } else if (control.is(':file')) {
-                var fileinput = control.closest('.fileinput');
-                if (fileinput.length) {
-                     if (Utils.isEmpty(v)) {
-                        fileinput.find('.fileinput-preview').html('');
-                        fileinput.addClass('fileinput-new').removeClass('fileinput-exists');
-                    } else {
-                        fileinput.find('.fileinput-preview').html('<img src="' + v + '"/>');
-                        fileinput.addClass('fileinput-exists').removeClass('fileinput-new');
+                if (control.attr('is_img') == 1) {
+                    var fileinput = control.closest('.fileinput');
+                    if (fileinput.length) {
+                        if (Utils.isEmpty(v)) {
+                            fileinput.find('.fileinput-preview').html('');
+                            fileinput.addClass('fileinput-new').removeClass('fileinput-exists');
+                        } else {
+                            fileinput.find('.fileinput-preview').html('<img src="' + v + '"/>');
+                            fileinput.addClass('fileinput-exists').removeClass('fileinput-new');
+                        }
                     }
                 }
+            } else if (control.is(':checkbox,:radio')) {
+                control.prop('checked', false).closest('span').removeClass('checked');
+                control.filter('[value=' + v + ']').prop('checked', true).closest('span').addClass('checked');
             }
         });
     },
@@ -511,6 +647,58 @@ var Utils = {
             });
         }
         return inputs;
+    },
+
+    /**
+     * HTML转义，把预定义字符（&、"、<、>）转化为HTML实体
+     * 
+     * @param data
+     *            string、json、jsonarray 需要转移的数据
+     * @param fields
+     *            array 需要转义的字段
+     * @returns 转义后的数据
+     */
+    htmlEncode : function(data, fields) {
+        var data_type = typeof (data);
+        if (data_type == 'string') {
+            data = Utils.htmlEncodeStr(data);
+        } else if (data_type == 'object') {
+            fields = Utils.get(fields, []);
+            if (fields.length == 0)
+                return;
+
+            if ($.isArray(data) && data.length) { // jsonarray
+                $.each(data, function(i, json) {
+                    $.each(json, function(j, val) {
+                        if ($.inArray(j, fields) != -1)
+                            data[i][j] = Utils.htmlEncodeStr(val);
+                    });
+                });
+            } else {// json
+                $.each(data, function(j, val) {
+                    if ($.inArray(j, fields) != -1)
+                        data[j] = Utils.htmlEncodeStr(val);
+                });
+            }
+        }
+        return data;
+    },
+
+    /**
+     * 把预定义字符（&、"、<、>）转化为HTML实体
+     * 
+     * @param string
+     */
+    htmlEncodeStr : function(string) {
+        if (Utils.isEmpty(string))
+            return '';
+        string = string.toString();
+        string = string.replace(/&/g, '&amp;');
+        string = string.replace(/"/g, '&quot;');
+        string = string.replace(/'/g, "'");
+        string = string.replace(/</g, '&lt;');
+        string = string.replace(/>/g, '&gt;');
+        return string;
     }
 };
 

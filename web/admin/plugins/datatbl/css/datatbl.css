@@ -73,7 +73,7 @@ table.c_tbl>tbody>tr ,table.c_tbl>tbody>tr:hover{
 }
 table.c_tbl_hover>tbody>tr:hover{
     cursor: pointer;
-    color: rgb(230,70,115);
+    color: #000;
 }
 table.c_tbl_hover[select='cell']>tbody>tr:hover {
     cursor: inherit;
@@ -81,7 +81,7 @@ table.c_tbl_hover[select='cell']>tbody>tr:hover {
 }
 table.c_tbl_hover[select='cell']>tbody>tr>td:hover {
     cursor: pointer;
-    color: rgb(230, 70, 115);
+    color: #000;
 }
 table.c_tbl>tbody>tr.c_tbl_nodata:hover,table.c_tbl>tbody>tr>td.c_td_no_hover:hover{
     cursor:default !important;

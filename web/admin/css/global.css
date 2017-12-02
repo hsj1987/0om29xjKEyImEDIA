@@ -9,3 +9,6 @@
     cursor: pointer;
     background: url(../img/close_btn.png) no-repeat center center;
 }
+.c_data_filter {
+    padding-bottom: 10px;
+}

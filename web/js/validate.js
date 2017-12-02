@@ -30,7 +30,6 @@
         field : null,// 字段名称（用于定义输出数据属性名）
         value : null,// 属性值（如果value!=null，则取value的值，否则取控件的值）
         label : '',// 字段名称（用于显示错误消息）,不传则默认区上级最近的form-group下的label的文本
-        isChecked : false,// 是否是单选或复选列表
         focusInvalid : true,// 聚焦验证失败的第一个控件
         outValue : true,// 是否输出值
         method : 'required',// 验证方法（字符串表示验证一个函数，数组表示单个值多种验证，按数组顺序依次验证，如：['required',{method:'rangeLength',error:'工号长度为6-16个字符',param:[6,16]},{method:function(){... ...},error:'自定义验证错误'}]）
@@ -42,7 +41,7 @@
         required : function(label, param, input){
             var msg = '“{0}”不能为空';
             if(input.length > 0) {
-                if(input.is(':text,:password')) {
+                if(input.is('textarea,:text,:password')) {
                     msg = '请输入“{0}”';
                 } else if(input.is('select,:radio,:checkbox,:file')) {
                     msg = '请选择“{0}”';
@@ -151,9 +150,19 @@
         if (options.value != null) {
             value = options.value;
         } else {
-            input = options.id ? $('#' + options.id) : container.find('[name="' + options.name + '"]' + (options.isChecked ? ':checked' : ''));
+            input = options.id ? $('#' + options.id) : container.find('[name="' + options.name + '"]');
+            if (input.is(':checkbox,:radio')) {
+                 input = input.filter(':checked');
+            }
             if (input.length == 1) {
-                if(input.is(':text')) {
+                if (input.attr('is_summernote') == 1) {
+                    value = input.code();
+                } else if (input.attr('is_img') == 1) {
+                    value = input.val();
+                    if (!value) {
+                        value = input.closest('.fileinput').find('.fileinput-preview img').attr('src');
+                    }
+                } else if(input.is(':text,textarea')) {
                     input.val($.trim(input.val()));
                     value = input.val();
                 } else {
@@ -169,7 +178,7 @@
 
         // 获取label
         if (options.label == '') {
-            options.label = input.closest('.form-group').find('label').text().replace('* ','')
+            options.label = input.closest('.form-group').find('label.control-label').text().replace('* ','')
         }
 
         // 验证
@@ -218,6 +227,9 @@
 
         // 输出
         if(validResult) {
+            if (input.attr('is_img') == 1) {
+                value = input.val() ? input.closest('.fileinput').find('.fileinput-preview img').attr('src') : '';
+            }
             return {
                 suc : true,
                 data : value,

@@ -7,12 +7,13 @@
  *      纵向合并单元格 rowspan : false (默认为不合并如果要合并，以字符串或数组形式传入要合并的字段，如：['id', 'name'])
  *      第一次加载时无数据显示列数 defaultShowColumnsNum : false (取值正整数，用于动态列，第一次加加载且无数据时，显示列数，默认为false)
  *      td手型样式 cursorDefault : false（是否去掉tbody的td鼠标移上去的手型样式）
- *      请求链接 url:url
+ *      请求链接 url: null
+ *      请求 action: null
  *      用icheck插件初始化表单选框 initIcheck:false(默认为false, 可设为function)
  *      表头字段 columns:[
  *       {column:字段名,
  *        label:表头名称,
- *        sort:是否排序（默认为true,可选false、desc、asc）,
+ *        sort:是否排序（默认为false,可选true、false、desc、asc）,
  *        tdAttr:td属性,
  *        noHtmlEncode:false,不HTML转义
  *        content:算定义内容处理函数
@@ -64,14 +65,20 @@
         }
 
         var columnDefault = {
-            sort: true,
+            sort: false,
             content: null,
             tdAttr: null,
             noHtmlEncode: false
         };
+        var needSort = false;
         $.each($this.settings.columns, function (i, v) {
-            $this.settings.columns[i] = $.extend(true, {}, columnDefault, v);
+            var columnOption = $.extend(true, {}, columnDefault, v);
+            $this.settings.columns[i] = columnOption;
+            if (columnOption.sort) {
+                needSort = true;
+            }
         });
+        $this.settings.needSort = needSort;
 
         $this.tbl = $(table);
         $this.dataTotal = 0;// 列表总条数
@@ -84,16 +91,19 @@
 
         // 表头
         $this.createThead();
-        // 排序
         $this.myTheadTable = this.myHtml.find('.c_tbl_thead>table');
-        $this.myTheadTable.sort({
-            sortParse: 'sql',
-            onSortChange: function (tbl, sort) {
-                if ($this.dataTotal > 1) {
-                    $this.load(0, sort, 0);
+
+        // 排序
+        if (needSort) {
+            $this.myTheadTable.sort({
+                sortParse: 'sql',
+                onSortChange: function (tbl, sort) {
+                    if ($this.dataTotal > 1) {
+                        $this.load(0, sort, 0);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // 分页
         $this.isFindPager = $this.myHtml.find('.c_pager').length;
@@ -223,10 +233,13 @@
         if (getTotal === undefined)
             getTotal = true;
         params.getTotal = getTotal ? 1 : 0;
-        params.sort = !!sort ? sort : $this.myTheadTable.sort().getSort();
+        if ($this.settings.needSort) {
+            params.sort = !!sort ? sort : $this.myTheadTable.sort().getSort();
+        }
 
         var options = {
             url: $this.settings.url,
+            action: $this.settings.action,
             data: params,
             success: function (result) {
                 if (!$this.isFindPager || getTotal)
@@ -358,6 +371,9 @@
                 $.each($this.settings.columns, function (ck, cv) {
                     var tdClass = '';
                     var tdAttrs = $.extend({},cv.tdAttr);
+                    if (typeof(cv.width) != "undefined" && cv.width != null) {
+                        tdAttrs.width = cv.width;
+                    }
                     if ($this.settings.cursorDefault) {// 去掉td的手型
                         var curDef = 'cursor: default;';
                         tdAttrs.style = !!tdAttrs.style ? (curDef + tdAttrs.style) : curDef;
