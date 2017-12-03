@@ -26,7 +26,7 @@ class controller_work_config extends admin_controller_base
 
     public function action_save()
     {
-        $img_path = APP_ROOT . '/web/upload/work_img';
+        $img_path = APP_ROOT . '/web/upload/work_category_img';
         $res = common::save_data('work_category', $_POST, 'id', ['title'], ['img'], $img_path);
         return $res;
     }

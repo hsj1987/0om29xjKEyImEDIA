@@ -17,7 +17,7 @@ var Page = {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link').addClass('show');
                     $('#div_img .fileinput-preview').toggleClass('img_h2', id == 1);
-                    $('#div_img .img_size').text(id == 1 ? '640*1080' : '640*540');
+                    $('#div_img .img_size').text(id == 1 ? '640*1080' :  id == 6 ? '1920*1080' : '640*540');
                 } else {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                     $('#div_title,#div_link,#div_desc').addClass('show');

@@ -1,47 +1,52 @@
 @CHARSET "UTF-8";
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0;}
 html {
-    font-size : 10px !important;
+    font-size : 40px !important;
 }
-@media only screen and (min-width: 360px){
+
+@media only screen and (min-width: 768px){
     html {
-        font-size: 11.25px !important;
+        font-size: 40px !important; 
     }
 }
-@media only screen and (min-width: 375px){
+@media only screen and (min-width: 1024px){
     html {
-        font-size: 11.72px !important;
+        font-size: 53.33px !important; 
     }
 }
-@media only screen and (min-width: 400px){
+@media only screen and (min-width: 1280px){
     html {
-        font-size: 12.5px !important;
+        font-size: 66.67px !important; 
     }
 }
-@media only screen and (min-width: 414px){
+@media only screen and (min-width: 1366px){
     html {
-        font-size: 12.94px !important;
+        font-size: 71.15px !important; 
     }
 }
-@media only screen and (min-width: 428px){
+@media only screen and (min-width: 1440px){
     html {
-        font-size: 13.5px !important;
+        font-size: 75px !important; 
     }
 }
-@media only screen and (min-width: 481px){
+@media only screen and (min-width: 1600px){
     html {
-        font-size: 15px !important; 
+        font-size: 83.33px !important; 
     }
 }
-@media only screen and (min-width: 569px){
+@media only screen and (min-width: 1680px){
     html {
-        font-size: 17.5px !important; 
+        font-size: 87.5px !important; 
     }
 }
-@media only screen and (min-width: 640px){
+@media only screen and (min-width: 1920px){
     html {
-        font-size: 20px !important; 
+        font-size: 100px !important; 
     }
+}
+
+body {
+    font-size: 14px;
 }
 
 /*加载等待*/
@@ -135,11 +140,99 @@ html {
 
 /*master*/
 #header {
-
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
 }
-#body {
+#header .top_bar {
+    height: 1.12rem;
+    background: #b81c22;
+}
+#header .top_bar .ico_switch {
+    width: 0.52rem;
+    height: 1.12rem;
+    margin-left: 0.42rem;
+    float: left;
+    background: url(/img/ico1.png) no-repeat left center;
+    background-size: 0.52rem 0.52rem;
+}
+#header .top_bar .curr_page {
+    padding-left: 0.52rem;
+    height: 1.12rem;
+    line-height: 1.12rem;
+    background: url(/img/ico2.png) no-repeat 10px center;
+    background-size: 0.24rem 0.24rem;
+    float: left;
+    font-size: 0.29rem;
+}
+#header .top_bar .logo {
+    height: 1.12rem;
+    line-height: 1.12rem;
+    float: right;
+    padding-right: 0.6rem;
+    font-size: 0.29rem;
+    color: #fff;
+}
+#header .top_bar:after {
+    content: ' ';
+    display: table;
+    clear: both;
+}
+#header .nav_bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10.8rem;
+    background: #000;
+}
 
+#body {
+    min-height: 9.68rem;
 }
 #footer {
-    
+    background: #b81c22;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+#footer .link_bar {
+    padding: 0.48rem 0.82rem;
+    height: 0.63rem;
+    line-height: 0.63rem;
+}
+#footer .link_bar .logo {
+    display: inline-block;
+}
+#footer .link_bar .logo img {
+    width: 0.77rem;
+    height: 0.24rem;
+}
+#footer .link_bar .contact {
+    display: inline-block;
+    padding-left: 0.54rem;
+}
+#footer .link_bar .contact a {
+    font-size: 0.28rem;
+    color:#fff;
+    text-decoration: none;
+}
+#footer .link_bar:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+#footer .link_bar .share_weibo, #footer .link_bar .share_weixin {
+    width: 0.63rem;
+    height: 0.63rem;
+    float: right;
+    background: url(/img/ico3.png) no-repeat center center;
+    background-size: 0.63rem 0.63rem;
+}
+#footer .link_bar .share_weixin {
+    background-image: url(/img/ico4.png);
+    margin-left: 0.3rem;
+}
+#footer .right_info {
+    padding: 1.1rem 0 0.73rem;
+    text-align: center;
+    font-size: 0.22rem;
 }

@@ -10,7 +10,7 @@ var Page = {
         form.find('[name=id]').change(function() {
             Common.loadForm(form, $(this).val(), function(data) {
                 if (data.img) {
-                    data.img = '/upload/work_img/' + data.img;
+                    data.img = '/upload/work_category_img/' + data.img;
                 }
                 return data;
             });
