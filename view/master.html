@@ -11,13 +11,13 @@
 <body>
 <div id="header">
     <div class="top_bar">
-        <div class="ico_switch open"></div>
+        <div class="open"></div>
         <div class="curr_page">首页</div>
-        <div class="logo">KEYIMEDIA</div>
+        <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
     </div>
     <div class="nav_bar">
         <div class="close"></div>
-        <div class="logo">KEYIMEDIA</div>
+        <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
         <div class="navs">
             <div class="title">NAVIGATION</div>
             <ul class="pages">
@@ -59,6 +59,14 @@
 </div>
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/utils.js?v={$version}"></script>
+<script>
+    $('#header .nav_bar .close').click(function(){
+        $('#header .nav_bar').removeClass('nav_bar_show');
+    });
+    $('#header .top_bar .open').click(function(){
+        $('#header .nav_bar').addClass('nav_bar_show');
+    });
+</script>
 {block name='foot'}{/block}
 </body>
 </html>

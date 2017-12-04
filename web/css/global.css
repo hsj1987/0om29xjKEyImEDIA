@@ -1,13 +1,10 @@
 @CHARSET "UTF-8";
+* {
+    box-sizing: border-box;
+}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0;}
 html {
-    font-size : 40px !important;
-}
-
-@media only screen and (min-width: 768px){
-    html {
-        font-size: 40px !important; 
-    }
+    font-size: 53.33px !important; 
 }
 @media only screen and (min-width: 1024px){
     html {
@@ -47,6 +44,10 @@ html {
 
 body {
     font-size: 14px;
+}
+
+a,a:hover,a:active,a:visited {
+    text-decoration: none;
 }
 
 /*加载等待*/
@@ -138,22 +139,26 @@ body {
     font-style: normal;
 }
 
-/*master*/
+/*master-头部*/
 #header {
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+#header a {
     color: #fff;
 }
 #header .top_bar {
     height: 1.12rem;
     background: #b81c22;
 }
-#header .top_bar .ico_switch {
+#header .top_bar .open {
     width: 0.52rem;
     height: 1.12rem;
     margin-left: 0.42rem;
     float: left;
     background: url(/img/ico1.png) no-repeat left center;
     background-size: 0.52rem 0.52rem;
+    cursor: pointer;
 }
 #header .top_bar .curr_page {
     padding-left: 0.52rem;
@@ -170,7 +175,6 @@ body {
     float: right;
     padding-right: 0.6rem;
     font-size: 0.29rem;
-    color: #fff;
 }
 #header .top_bar:after {
     content: ' ';
@@ -178,20 +182,96 @@ body {
     clear: both;
 }
 #header .nav_bar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 10.8rem;
+    height: 0;
+    padding-top: 1.55rem;
     background: #000;
+    transition: height .5s;
+    -moz-transition: height .5s;
+    -webkit-transition: height .5s;
+    -o-transition: height .5s;
+    display: none;
+}
+#header .nav_bar_show {
+    display: block;
+    height: 10.8rem;
+}
+#header .nav_bar .close {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: url(/img/ico5.png) no-repeat center center;
+    background-size: 0.42rem 0.42rem;
+    cursor: pointer;
+}
+#header .nav_bar .logo {
+    position: absolute;
+    top: 0.72rem;
+    right: 0.72rem;
+    font-size: 0.29rem;
+    cursor: pointer;
+}
+#header .navs {
+    width: 50%;
+    padding-left: 10%;
+    float: left;
+}
+#header .navs .title {
+    font-size: 0.26rem;
+}
+#header .navs .pages,#header .offices .pages {
+    padding-top: 0.1rem;
+}
+#header .navs .pages li {
+    list-style: none;
+    font-size: 0.5rem;
+    padding-top: 0.25rem;
+    white-space: nowrap;
+}
+#header .navs .pages li a {
+    color: #999;
+}
+#header .navs .pages li a:hover {
+    color: #fff;
+}
+#header .offices {
+    width: 50%;
+    float: left;
+}
+#header .offices li {
+    list-style: none;
+    font-size: 0.26rem;
+    padding-top: 0.10rem;
+}
+#header .offices .title {
+    height: 0.41rem;
+    line-height: 0.41rem;
+    font-size: 0.18rem;
+    background: url(/img/ico6.png) no-repeat left center;
+    background-size: 0.31rem 0.41rem;
+    padding-left: 0.4rem;    
+}
+#header .offices .pages {
+    padding-left: 0.4rem;    
 }
 
+/*master-页面内容*/
 #body {
     min-height: 9.68rem;
 }
+
+/*master-底部*/
 #footer {
     background: #b81c22;
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+#footer a {
     color: #fff;
 }
 #footer .link_bar {
@@ -212,8 +292,6 @@ body {
 }
 #footer .link_bar .contact a {
     font-size: 0.28rem;
-    color:#fff;
-    text-decoration: none;
 }
 #footer .link_bar:after {
     content: '';
