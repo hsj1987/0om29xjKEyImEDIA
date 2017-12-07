@@ -1,6 +1,6 @@
 <?php
 
-define('CURR_ENV_NAME', 'IDC');
+define('CURR_ENV_NAME', 'test');
 
 // WEB LOG配置
 $WEB_LOG_CONFIG = [
