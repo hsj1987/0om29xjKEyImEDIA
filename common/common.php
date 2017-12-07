@@ -100,6 +100,9 @@ class common
                     case 'date' :
                         $value = $value ? date('Y-m-d', strtotime($value)) : $value;
                         break;
+                    case 'nl2br' :
+                        $value = $value ? nl2br($value) : $value;
+                        break;
                 }
                 $data_list[$k][$col] = $value;
             }

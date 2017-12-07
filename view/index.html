@@ -1,6 +1,42 @@
-{extends file='master.html'} {block name='title'}{$title}{/block} {block name='head'}
+{extends file='master.html'} {block name='title'}首页{/block} {block name='head'}
+<link type="text/css" rel="stylesheet" href="/css/p_index.css?v={$version}}">
 {/block} {block name='body'}
+<div class="text_bar">
+    {$text}
+</div>
+<div class="img_bars c_clear">
+    {foreach $index_configs as $id => $config}
+    <a class="bar_item {$config['size']}" href="{$config['link']}">
+        {if $config['only_text'] == 1}
+            <div class="text_title">{$config['title']}&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+            <div class="text_desc">{$config['desc']}</div>
+        {else}
+            <img class="main_img" src="/upload/index_img/{$config['img']}"/>
+            <div class="bottom_info">
+                <div class="logo"><img src="/upload/index_img/{$config['logo']}"/></div>
+                <div class="info">
+                    <div class="name">{$config['name']}</div>
+                    <div class="title">{$config['title']}&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+                </div>
+            </div>
+        {/if}
+    </a>
+    {/foreach}
+
+</div>
 {/block} 
 {block name='foot'}
- <script src="/js/p_index.js?v={$version}"></script>
+<script>
+   
+    $(function() {
+        function init_size() {
+            var w = $('#container').width();
+            var h1 = (w/3)/0.5926; 
+            $('.img_bars .size1').height(h1);
+            $('.img_bars .size2').height(h1/2);
+        }
+        init_size();
+        $(window).resize(init_size);
+    });
+</script>
 {/block}
