@@ -26,17 +26,17 @@ class controller_index extends controller_base
 
         $index_configs2['4'] = $this->get_by_id($index_configs, 4);
         $index_configs2['4']['size'] = 'size2';
-        $index_configs2['4']['only_text'] = 1;
-
-        $index_configs2['2'] = $this->get_by_id($index_configs, 2);
-        $index_configs2['2']['size'] = 'size2';
+        $index_configs2['4']['only_text'] = 'only_text';
 
         $index_configs2['3'] = $this->get_by_id($index_configs, 3);
         $index_configs2['3']['size'] = 'size2';
+        
+        $index_configs2['2'] = $this->get_by_id($index_configs, 2);
+        $index_configs2['2']['size'] = 'size2';
 
         $index_configs2['5'] = $this->get_by_id($index_configs, 5);
         $index_configs2['5']['size'] = 'size2';
-        $index_configs2['5']['only_text'] = 1;
+        $index_configs2['5']['only_text'] = 'only_text';
 
         $index_configs2['6'] = $this->get_by_id($index_configs, 6);
         $index_configs2['6']['size'] = 'size3';

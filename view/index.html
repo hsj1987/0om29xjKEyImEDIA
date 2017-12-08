@@ -6,17 +6,18 @@
 </div>
 <div class="img_bars c_clear">
     {foreach $index_configs as $id => $config}
-    <a class="bar_item {$config['size']}" href="{$config['link']}">
-        {if $config['only_text'] == 1}
-            <div class="text_title">{$config['title']}&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+    <a class="bar_item {$config['size']} {$config['only_text']} bar_item_{$id}" href="{$config['link']}">
+        {if $config['only_text'] == 'only_text'}
+            <div class="text_title">{$config['title']}&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
             <div class="text_desc">{$config['desc']}</div>
         {else}
             <img class="main_img" src="/upload/index_img/{$config['img']}"/>
-            <div class="bottom_info">
+            <div class="bottom_info c_clear">
+                <div class="bottom_bg"></div>
                 <div class="logo"><img src="/upload/index_img/{$config['logo']}"/></div>
                 <div class="info">
                     <div class="name">{$config['name']}</div>
-                    <div class="title">{$config['title']}&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+                    <div class="title">{$config['title']}&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
                 </div>
             </div>
         {/if}
@@ -30,10 +31,19 @@
    
     $(function() {
         function init_size() {
-            var w = $('#container').width();
-            var h1 = (w/3)/0.5926; 
-            $('.img_bars .size1').height(h1);
-            $('.img_bars .size2').height(h1/2);
+            var fw = 768;
+            var ww = $('#container').width();
+            var is_mobile = ww <= fw;
+            var w = is_mobile ? ww : ww/3;
+            var h1 = w/0.5926; 
+            $('.img_bars .size1').css('height', h1);
+            var h2 = h1/2;
+            var size2_bars = $('.img_bars .size2');
+            size2_bars.css('height', h2);
+            if (is_mobile) {
+                size2_bars.filter('.only_text').css('height', '');
+            }
+            
         }
         init_size();
         $(window).resize(init_size);
