@@ -1,18 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="format-detection" content="telephone=no" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="/img/fav.png" />
-<title>服务端出现异常</title>
-<link type="text/css" rel="stylesheet" href="/css/global.css?v={$version}" />{block name='head'}{/block}
-</head>
-<body>
-{$result['stat']}.{$result['msg']}
-<br/>
-{if isset($result['error'])}
-<div>{json_encode($result['error'])}</div>
-{/if}
-</body>
-</html>
+{extends file='master.html'}
+{block name='head'}
+<style type="text/css">
+.error_box {
+    width: 6.4rem;
+    margin: 0 auto;
+    padding-top: 2rem;
+    color: #222;
+}
+.error_box .info {
+    font-size: 0.3rem;
+    text-align: center;
+}
+.error_box .detail {
+    padding-top: 0.2rem;
+    font-size: 0.24rem;
+}
+</style>
+{/block}
+
+{block name='body'}
+    <div class="error_box">
+        <div class="info">{$result['msg']}</div>
+        {if isset($result['error'])}
+            <div class="detail">{json_encode($result['error'])}</div>
+        {/if}
+    </div>
+{/block} 

@@ -13,6 +13,10 @@ class controller_index extends controller_base
     {
         $this->assign('page_name', 'HOME');
 
+        $big_img = model::get_big_img_config(1);
+        common::parse_data($big_img, ['text1' => 'nl2br', 'text2' => 'nl2br']);
+        $this->assign('big_img', $big_img);
+
         $text = model::get_rtf_config(1);
         $this->assign('text', $text);
 

@@ -65,15 +65,16 @@ class controller_work extends controller_base
         ];
         if (!$id) { 
             $where['AND']['category_id'] = $cid;
-            $where['LIMIT'] = [0, 1];
             $data = $db->get('work', $columns, $where);
+            if (!$data) {
+                return output::err(2, '该WORK分类下还没有WORK信息');
+            }
         } else {
             $where['AND']['id'] = $id;
             $data = $db->get('work', $columns, $where);
-        }
-
-        if (!$data) {
-            return output::err(2, '数据不存在或不可见');
+            if (!$data) {
+                return output::err(2, '数据不存在或不可见');
+            }
         }
 
         return output::ok($data);

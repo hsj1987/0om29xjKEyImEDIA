@@ -25,14 +25,14 @@ var Page = {
                 },
                 {
                     name : 'text1',
-                    method : ['required', {
+                    method : [{
                         method : 'maxLength',
                         param : 256
                     }]
                 },
                 {
                     name : 'text2',
-                    method : ['required', {
+                    method : [{
                         method : 'maxLength',
                         param : 256
                     }]
