@@ -8,13 +8,11 @@ use app\common\common;
 
 class controller_index extends controller_base
 {
-
-    public $assign_url_params = true;
-
-    public $assign_version = true;
     
     public function action_index()
     {
+        $this->assign('page_name', 'HOME');
+
         $text = model::get_rtf_config(1);
         $this->assign('text', $text);
 

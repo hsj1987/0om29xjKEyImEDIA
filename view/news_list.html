@@ -1,0 +1,32 @@
+{extends file='master.html'}
+
+{block name='frame_head'}
+<link href="/admin/frame/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/admin/frame/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/admin/frame/global/css/components.min.css" rel="stylesheet" type="text/css">
+{/block}
+{block name='head'}
+<link href="/admin/plugins/datatbl/css/pager.css?v={$version}" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/css/p_news_list.css?v={$version}}">
+{/block}
+
+ {block name='body'}
+<div class="c_big_img">
+    <img src="/upload/big_img/{$big_img['img']}"/>
+    <div class="text">
+        <div class="text1">{{$big_img['text1']}}</div>
+        <div class="text2">{{$big_img['text2']}}</div>
+    </div>
+</div>
+
+<div id="news_list" class="news_list">
+    
+</div>
+<div class="c_pager_bar clearfix">
+    <span class="c_pager"></span>
+</div>
+{/block} 
+{block name='foot'}
+<script src="/admin/plugins/datatbl/js/pager.js?v={$version}"></script>
+<script src="/js/p_news_list.js?v={$version}"></script>
+{/block}

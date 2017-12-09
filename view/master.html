@@ -5,7 +5,8 @@
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="shortcut icon" href="/img/fav.png" />
-<title>{block name='title'}{/block}-科翼传媒</title>
+<title>{$page_name}-科翼传媒</title>
+{block name='frame_head'}{/block}
 <link type="text/css" rel="stylesheet" href="/css/global.css?v={$version}" />
 <link type="text/css" rel="stylesheet" href="/css/master.css?v={$version}" />
 {block name='head'}{/block}
@@ -14,20 +15,20 @@
 <div id="container">
 <div id="header">
     <div class="top_bar">
-        <div class="open"></div>
-        <div class="curr_page">首页</div>
+        <div class="ico_open"></div>
+        <div class="curr_page">{$page_name}</div>
         <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
     </div>
     <div class="nav_bar">
-        <div class="close"></div>
+        <div class="ico_close"></div>
         <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
         <div class="navs">
             <div class="title">NAVIGATION</div>
             <ul class="pages">
                 <li><a href="/index.html">HOME</a></li>
-                <li><a href="/wrok_index.html">WORK</a></li>
+                <li><a href="/work_index.html">WORK</a></li>
                 <li><a href="/service.html">SERVICE</a></li>    
-                <li><a href="/news.html">NEWS</a></li>
+                <li><a href="/news_list.html">NEWS</a></li>
                 <li><a href="/clients.html">CLIENTS</a></li>
                 <li><a href="/awards.html">AWARDS</a></li>
                 <li><a href="/recruit.html">RECRUIT</a></li>
@@ -65,10 +66,10 @@
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/utils.js?v={$version}"></script>
 <script>
-    $('#header .nav_bar .close').click(function(){
+    $('#header .nav_bar .ico_close').click(function(){
         $('#header .nav_bar').removeClass('nav_bar_show');
     });
-    $('#header .top_bar .open').click(function(){
+    $('#header .top_bar .ico_open').click(function(){
         $('#header .nav_bar').addClass('nav_bar_show');
     });
 </script>

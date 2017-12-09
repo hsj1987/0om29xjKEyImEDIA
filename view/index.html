@@ -1,14 +1,14 @@
-{extends file='master.html'} {block name='title'}首页{/block} {block name='head'}
+{extends file='master.html'}  {block name='head'}
 <link type="text/css" rel="stylesheet" href="/css/p_index.css?v={$version}}">
 {/block} {block name='body'}
-<div class="text_bar">
+<div class="c_text_bar">
     {$text}
 </div>
 <div class="img_bars c_clear">
     {foreach $index_configs as $id => $config}
-    <a class="bar_item {$config['size']} {$config['only_text']} bar_item_{$id}" href="{$config['link']}">
+    <a class="bar_item c_img_bar {$config['size']} {$config['only_text']} bar_item_{$id}" href="{$config['link']}">
         {if $config['only_text'] == 'only_text'}
-            <div class="text_title">{$config['title']}&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+            <div class="text_title">{$config['title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
             <div class="text_desc">{$config['desc']}</div>
         {else}
             <img class="main_img" src="/upload/index_img/{$config['img']}"/>
@@ -17,7 +17,7 @@
                 <div class="logo"><img src="/upload/index_img/{$config['logo']}"/></div>
                 <div class="info">
                     <div class="name">{$config['name']}</div>
-                    <div class="title">{$config['title']}&nbsp;&nbsp;<img src="/img/ico8.png"/></div>
+                    <div class="title">{$config['title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
                 </div>
             </div>
         {/if}
@@ -27,26 +27,15 @@
 </div>
 {/block} 
 {block name='foot'}
+<script src="/js/common.js"></script>
 <script>
-   
     $(function() {
-        function init_size() {
-            var fw = 768;
-            var ww = $('#container').width();
-            var is_mobile = ww <= fw;
-            var w = is_mobile ? ww : ww/3;
-            var h1 = w/0.5926; 
-            $('.img_bars .size1').css('height', h1);
-            var h2 = h1/2;
-            var size2_bars = $('.img_bars .size2');
-            size2_bars.css('height', h2);
-            if (is_mobile) {
-                size2_bars.filter('.only_text').css('height', '');
-            }
-            
-        }
-        init_size();
-        $(window).resize(init_size);
+        $('.img_bars .size1').init_img_height(3, 0.5926);
+        $('.img_bars .size2').init_img_height(3, 1.1852);   
+        $(window).resize(function(){
+            $('.img_bars .size1').init_img_height(3, 0.5926);
+            $('.img_bars .size2').init_img_height(3, 1.1852);   
+        });
     });
 </script>
 {/block}

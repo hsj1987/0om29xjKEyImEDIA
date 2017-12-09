@@ -19,16 +19,21 @@
 		return jNode.data("pager");
 	};
 	
-	$.pager.createHtml=function(){
+	$.pager.createHtml = function(options) {
+		options = $.extend(true, {
+			showPageSize: true
+		}, options ? options : {});
 		var html='';
 		html+='<span class="c_pager">';
 		html+='第 <a href="javascript:void(0);" class="btn btn-sm default prev c_page_prev"><i class="fa fa-angle-left"></i></a>';
-                html+='<span class="c_page_page_no"><input type="text" name="number" class="pagination-panel-input form-control input-sm input-inline input-mini" maxlenght="5" style="text-align: center; margin: 0 5px;" /></span>';
-                html+='<a href="javascript:void(0);" class="btn btn-sm default next c_page_next"><i class="fa fa-angle-right"></i></a> 页';
-                html+='<span class="seperator"> | </span>共 <span class="pagination-panel-total c_page_page_count">0</span> 页';
-                html+='<span class="seperator"> | </span>共 <span class="pagination-panel-total c_page_record_count btn_margin_dist" style="display: inline-block;">0</span> 条&nbsp;&nbsp;';
-                html+='<span style="display: inline-block;">每页显示 <select name="page_size" class="pagination-panel-input form-control input-sm input-inline select-mini"><option>10</option><option>25</option><option>50</option><option>100</option></select> 条</span>';
-                html+='</span>';
+		html+='<span class="c_page_page_no"><input type="text" name="number" class="pagination-panel-input form-control input-sm input-inline input-mini" maxlenght="5" style="text-align: center; margin: 0 5px;" /></span>';
+		html+='<a href="javascript:void(0);" class="btn btn-sm default next c_page_next"><i class="fa fa-angle-right"></i></a> 页';
+		html+='<span class="seperator"> | </span>共 <span class="pagination-panel-total c_page_page_count">0</span> 页';
+		html+='<span class="seperator"> | </span>共 <span class="pagination-panel-total c_page_record_count btn_margin_dist" style="display: inline-block;">0</span> 条';
+		if (options.showPageSize) {
+			html+='&nbsp;&nbsp;<span style="display: inline-block;">每页显示 <select name="page_size" class="pagination-panel-input form-control input-sm input-inline select-mini"><option>10</option><option>25</option><option>50</option><option>100</option></select> 条</span>';
+		}
+		html+='</span>';
 		return html;
 	}
 	
@@ -177,7 +182,7 @@
 	pager.prototype.pageChange = function(goPageNo) {
 		$this = this;
 		if (typeof $this.settings.onPageChange == 'function') {
-			var result = $this.settings.onPageChange($this, goPageNo,$this.settings.perCount);
+			var result = $this.settings.onPageChange($this, goPageNo, $this.settings.perCount);
 			if (result == false)
 				return false;
 		}

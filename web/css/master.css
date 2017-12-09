@@ -1,6 +1,11 @@
 @CHARSET "UTF-8";
 html {
-    font-size: 53.33px !important; 
+    font-size: 40px !important; 
+}
+@media only screen and (min-width: 768px){
+    html {
+        font-size: 40px !important; 
+    }
 }
 @media only screen and (min-width: 1024px){
     html {
@@ -63,7 +68,7 @@ a:hover {
     height: 1.12rem;
     background: #b81c22;
 }
-#header .top_bar .open {
+#header .top_bar .ico_open {
     width: 0.52rem;
     height: 1.12rem;
     margin-left: 0.42rem;
@@ -73,7 +78,7 @@ a:hover {
     cursor: pointer;
 }
 #header .top_bar .curr_page {
-    padding-left: 0.52rem;
+    padding-left: 0.55rem;
     height: 1.12rem;
     line-height: 1.12rem;
     background: url(/img/ico2.png) no-repeat 10px center;
@@ -113,7 +118,7 @@ a:hover {
     top: 0;
     opacity: 1;
 }
-#header .nav_bar .close {
+#header .nav_bar .ico_close {
     position: absolute;
     top: 0.6rem;
     left: 0.6rem;
@@ -238,4 +243,204 @@ a:hover {
         width: 1920px;
         margin: 0 auto;
     }
+}
+
+/*有底部信息栏的图片区域*/
+.c_img_bar {
+    color: #fff;
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+.c_img_bar .main_img {
+    width: 100%;
+}
+.c_img_bar .bottom_info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.68rem;
+}
+.c_img_bar .bottom_bg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .7;
+}
+.c_img_bar .bottom_info .logo {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 0.67rem;
+    height: 0.67rem;
+    line-height: 0.67rem;
+    float: left;
+    overflow: hidden;
+}
+.c_img_bar .bottom_info .logo img {
+    width: 100%;
+}
+.c_img_bar .bottom_info .info {
+    position: absolute;
+    left: 1.42rem;
+    top: 0.5rem;
+    width: 100%;
+}
+.c_img_bar .bottom_info .name {
+    font-size: 0.22rem;
+}
+.c_img_bar .bottom_info .title {
+    font-size: 0.29rem;
+    padding-top: 0.08rem;
+}
+
+/*3列图，标题居中*/
+.c_img_bars a {
+    color: #fff;
+}
+.c_img_bars .bar_item {
+    float: left;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 33.333%;
+}
+@media screen and (max-width: 768px){
+    .c_img_bars .bar_item {
+        width: 100%;
+    }
+}
+.c_img_bars .bar_item img {
+    width: 100%;
+}
+.c_img_bars .bar_item .title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.c_img_bars .bar_item .title td {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    font-size: 0.54rem;
+    line-height: 0.7rem;
+}
+
+/*顶部大图*/
+.c_big_img {
+    position: relative;
+} 
+.c_big_img img {
+    width: 100%;
+}
+.c_big_img .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+@media screen and (min-width: 320px){
+    .c_big_img .text {
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    .c_big_img .text1 {
+        font-size: 0.45rem;
+    }
+    .c_big_img .text2 {
+        font-size: 0.3rem;
+    }
+}
+@media screen and (min-width: 375px){
+    .c_big_img .text {
+        width: 100%;
+        padding-left: 0.6rem;
+        padding-top: 0.6rem;
+    }
+    .c_big_img .text1 {
+        font-size: 0.5rem;
+    }
+    .c_big_img .text2 {
+        font-size: 0.35rem;
+    }
+}
+@media screen and (min-width: 414px){
+    .c_big_img .text {
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    .c_big_img .text1 {
+        font-size: 0.6rem;
+    }
+    .c_big_img .text2 {
+        font-size: 0.4rem;
+    }
+}
+@media screen and (min-width: 768px){
+    .c_big_img .text {
+        width: 100%;
+        padding-left: 1.8rem;
+        padding-top: 2rem;
+    }
+    .c_big_img .text1 {
+        font-size: 1rem;
+    }
+    .c_big_img .text2 {
+        font-size: 0.6rem;
+    }
+}
+
+/*链接图标*/
+.c_link_ico {
+    width: 0.28rem;
+    height: 0.26rem;
+    vertical-align: middle;
+}
+
+/*富文本显示框*/
+.c_text_bar {
+    width: 9.6rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+.c_text_bar img {
+    max-width: 100%;
+}
+@media screen and (max-width: 768px){
+    .c_text_bar {
+        width: 100%;
+        padding: 1.5rem 1rem;
+    }
+}
+
+/*上一个、下一个*/
+.c_next,.c_prev  {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -0.5rem;
+    width: 1.03rem !important;
+    height: 1.03rem !important;
+    display: block;
+    background-image: url(/img/ico7.png) !important;
+    background-size: 1.03rem 1.03rem !important;
+}
+.c_prev {
+    left: 10px;
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);	
 }

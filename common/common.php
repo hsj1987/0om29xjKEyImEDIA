@@ -81,13 +81,18 @@ class common
     /**
      * 格式化数据
      */
-    public static function parse_data(&$data_list, $parse_rules)
+    public static function parse_data(&$data, $parse_rules)
     {
-        if (!is_array($data_list) || !$data_list || !is_array($parse_rules) || !$parse_rules ) {
-            return $data_list;
+        if (!is_array($data) || !$data || !is_array($parse_rules) || !$parse_rules ) {
+            return $data;
         }
 
-        foreach ($data_list as $k => $data_item) {
+        $keys = array_keys($data);
+        $is_list = is_int($keys[0]) ? true : false;
+        if (!$is_list) {
+            $data = [$data];
+        }
+        foreach ($data as $k => $data_item) {
             foreach ($parse_rules as $col => $rule) {
                 $value = $data_item[$col];
                 switch ($rule) {
@@ -100,12 +105,18 @@ class common
                     case 'date' :
                         $value = $value ? date('Y-m-d', strtotime($value)) : $value;
                         break;
+                    case 'date_cn' :
+                        $value = $value ? date('Y年m月d日', strtotime($value)) : $value;
+                        break;
                     case 'nl2br' :
                         $value = $value ? nl2br($value) : $value;
                         break;
                 }
-                $data_list[$k][$col] = $value;
+                $data[$k][$col] = $value;
             }
+        }
+        if (!$is_list) {
+            $data = $data[0];
         }
     }
 

@@ -1,0 +1,20 @@
+{extends file='master.html'} {block name='head'}
+{/block} {block name='body'}
+
+<div class="c_big_img">
+    <img src="/upload/work_img/{$data['img']}"/>
+    {if $prev_id}
+        <a class="c_prev" href="work.html?id={$prev_id}"></a>
+    {/if}
+    {if $next_id}
+        <a class="c_next" href="work.html?id={$next_id}"></a>
+    {/if}
+</div>
+
+<div class="c_text_bar">
+    {$data['contents']}
+</div>
+
+{/block} 
+{block name='foot'}
+{/block}

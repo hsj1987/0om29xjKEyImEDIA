@@ -837,6 +837,42 @@ String.prototype.format = function() {
     return str;
 }
 
+$.fn.scrollevent = function(options) {
+    options = $.extend({
+        position : 'start_appear', // 事件触发位置：start_appear-开始显示时；max_appear-开始最大范围显示；center-开始居中时；top_finish-顶部完成时；bottom_finish-底部完成时
+        diff : 100, // 位置调整差距
+        appear_class : null, // 显示样式
+        appear_event : null, // 显示触发事件
+        disappear_event : null
+    // 消失触发事件
+    }, options);
+    var h = $(this).height();
+    var t = $(this).offset().top;
+    var wh = $(window).height();
+    var wt = $(window).scrollTop();
+    var is_appear = wt + wh > t && wt < t + h;
+    //document.title = ('h:' + h + ' t:' + t + ' wh:' + wh + ' wt:' + wt + ' is_appear:' + (is_appear ? 1 : 0));
+    if (is_appear
+            && ((options.position == 'start_appear' && wt + wh > t + options.diff) || (options.position == 'max_appear' && (wh > h ? (wt + wh > t + h + options.diff) : (wt > t + options.diff))) || (options.position == 'center' && wt + wh > t + (wh - h) / 2 + h + options.diff) || (options.position == 'top_finish' && wt > t + options.diff) || (options.position == 'bottom_finish'
+                    && wt + wh > t + h + options.diff))) {
+        if (options.appear_class) {
+            $(this).addClass(options.appear_class);
+        }
+        if (options.appear_event) {
+            options.appear_event.call(this, options);
+        }
+    }
+
+    if (!is_appear) {
+        if (options.appear_class) {
+            $(this).removeClass(options.appear_class);
+        }
+        if (options.disappear_event) {
+            options.disappear_event.call(this, options);
+        }
+    }
+}
+
 // 超链接跳转
 $('.c_link[href]').click(function() {
     Utils.go($(this).attr('href'));

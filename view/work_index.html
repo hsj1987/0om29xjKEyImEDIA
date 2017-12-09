@@ -1,0 +1,56 @@
+{extends file='master.html'} {block name='head'}
+<link type="text/css" rel="stylesheet" href="/assets/swiper/css/swiper.min.css">
+{/block} {block name='body'}
+
+<div class="c_img_bars c_clear">
+    {foreach $categorys as $category}
+    <a class="bar_item" href="work.html?cid={$category['id']}">
+        <img  src="/upload/work_category_img/{$category['img']}"/>
+        <table class="title"><tr><td>{$category['title']}</td></tr></table>
+    </a>
+    {/foreach}
+</div>
+
+<div class="c_text_bar">
+    {$text}
+</div>
+
+<div class="works_bar swiper-container">
+    <div class="swiper-wrapper">
+        {foreach $works as $work}
+        <a class="bar_item c_img_bar swiper-slide" href="work.html?id={$work['id']}">
+            <img class="main_img" src="/upload/work_img/{$work['index_img']}"/>
+            <div class="bottom_info c_clear">
+                <div class="bottom_bg"></div>
+                <div class="logo"><img src="/upload/work_img/{$work['index_logo']}"/></div>
+                <div class="info">
+                    <div class="name">{$work['index_name']}</div>
+                    <div class="title">{$work['index_title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
+                </div>
+            </div>
+        </a>
+        {/foreach}
+    </div>
+    <div class="swiper-button-prev c_prev"></div>
+    <div class="swiper-button-next c_next"></div>
+</div>
+
+{/block} 
+{block name='foot'}
+<script src="/assets/swiper/js/swiper.jquery.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+    $(function() {
+        $('.c_img_bars .bar_item').init_img_height(3, 0.6612); 
+        $(window).resize(function(){
+            $('.c_img_bars .bar_item').init_img_height(3, 0.6612);   
+        });
+
+        var mySwiper = new Swiper ('.swiper-container', {
+            loop: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+        })  
+    });
+</script>
+{/block}
