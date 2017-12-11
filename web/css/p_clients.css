@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+.list_bar {
+    width: 9.6rem;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+    .list_bar {
+        width: 100%;
+        padding: 0.5rem 5%;
+    }
+}
+.list_bar .category {
+    padding-top: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: solid 1px #000;
+}
+.list_bar .category:last-child {
+    border-bottom: 0;
+}
+.list_bar .category .name {
+    font-size: 0.32rem;
+    color: #000;
+    padding-bottom: 0.7rem;
+}
+.list_bar .category .item {
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    float: left;
+    text-align: center;
+    margin: 0.06rem;
+}
+.list_bar .category .item img {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+}

@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
-
+body {
+    line-height: initial;
+}
 .news_list {
     padding-top: 4px;
 }

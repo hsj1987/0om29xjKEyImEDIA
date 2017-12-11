@@ -14,7 +14,7 @@
 <body>
 <div id="container">
 <div id="header">
-    <div class="top_bar">
+    <div class="top_bar c_clear">
         <div class="ico_open"></div>
         <div class="curr_page">{$page_name}</div>
         <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
@@ -51,17 +51,20 @@
 </div>
 
 <div id="footer">
-    <div class="link_bar">
-        <a class="logo" href="/index.html"><img src="/img/logo.png"/></a>
-        <div class="contact"><a href="/contact_us.html">CONTACT US</a></div>
-        <div class="share_weixin"></div>
-        <div class="share_weibo"></div>
+    <div class="link_bar c_clear">
+        <div class="links">
+            <a class="logo" href="/index.html"><img src="/img/logo.png"/></a><a class="contact" href="/contact_us.html">CONTACT US</a>
+        </div>
+        <div class="jiathis_style_32x32">
+            <a class="jiathis_button_tsina share_weibo"></a><a class="jiathis_button_weixin share_weixin"></a>
+        </div>
     </div>
     <div class="right_info">
         © 2017 KEYIMEDIA AGENCY CO.,LTD. ALL RIGHTS RESERVED
     </div>
 </div>
 </div>
+
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/utils.js?v={$version}"></script>
@@ -74,5 +77,6 @@
     });
 </script>
 {block name='foot'}{/block}
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 </body>
 </html>
