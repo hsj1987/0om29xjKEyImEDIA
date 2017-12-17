@@ -77,12 +77,17 @@
         $('#header .nav_bar').addClass('nav_bar_show');
     });
 
-    var header = $('#header');
-        if (!header.hasClass('header_red')) {
+    function init_header()
+    {
+        var wt = $(window).scrollTop();
+        $('#header').toggleClass('header_red', wt >= 10);
+    }
+
+    if (!$('#header').hasClass('header_red')) {
         $(window).scroll(function() {
-            var wt = $(window).scrollTop();
-            header.toggleClass('header_red', wt >= 10);
+            init_header();
         });
+        init_header();
     }
 </script>
 {block name='foot'}{/block}

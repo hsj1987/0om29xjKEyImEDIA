@@ -25,14 +25,14 @@ class controller_contact_us extends controller_base
     public function action_submit_info()
     {
         $subject = '联系我们（来自官网）';
-        $content = '<div style="font-size:14px; color: #555;">';
+        $content = '<div style="font-size:14px; color: #555;max-width: 600px;">';
         $content .= '<b style="color: #000;">NAME:</b> ' . $_POST['name'] . '<br/><br/>';
         $content .= '<b style="color: #000;">EMAIL:</b> ' . $_POST['email'] . '<br/><br/>';
         $content .= '<b style="color: #000;">TELEPHONE:</b> ' . $_POST['telephone'] . '<br/><br/>';
         $content .= '<b style="color: #000;">COMPANY:</b> ' . $_POST['company'] . '<br/><br/>';
-        $content .= '<b style="color: #000;">MESSAGE:</b> ' . $_POST['message'] . '<br/><br/>';
+        $content .= '<b style="color: #000;">MESSAGE:</b> ' . nl2br($_POST['message']) . '<br/><br/>';
         $content .= '</div>';
-        $ok = common::send_email($subject, $content, ['84305578@qq.com' => '科翼传媒']);
+        $ok = common::send_email($subject, $content, ['pr@keyimedia.com' => '科翼传媒']);
         if ($ok) {
             return output::ok();
         } else {

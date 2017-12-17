@@ -104,9 +104,10 @@
     border: 0;
     cursor: pointer;
 }
-@media screen and (max-width: 1920px) {
+@media screen and (max-width: 1280px) {
     .content_bar .desc {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 20px;
     }
 }
 @media screen and (max-width: 768px) {
@@ -116,7 +117,7 @@
     }
     .tabs_bar li .name, .content_bar .desc {
         font-size: 12px;
-        line-height: initial;
+        line-height: 18px;
     }
     .submit_bar .control .text {
         width: 100%;

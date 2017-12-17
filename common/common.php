@@ -154,6 +154,7 @@ class common
             $mail->Port = 465;                             // TCP port to connect to
             $mail->CharSet = 'UTF-8';
 
+            $mail->setFrom('k.k.k@qq.com', '官网访问用户');
             //Recipients
             foreach($address_list as $address => $name) {
                 $mail->addAddress($address, $name);     // Add a recipient

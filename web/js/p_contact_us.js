@@ -50,7 +50,10 @@ var Page = {
             Utils.ajax({
                 action: 'submit_info',
                 data : res.data,
-                tip : '提交成功！'
+                tip : '提交成功！',
+                success : function() {
+                    Utils.clearForm('.submit_bar');
+                }
             });
         });
     }
