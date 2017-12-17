@@ -7,7 +7,7 @@ var Page = {
         var form = $('#form');
 
         var rtf_contents = $('#rtf_contents');
-        rtf_contents.summernote({height: 300, lang: 'zh-CN'});
+        Common.initSummernote(rtf_contents);
 
         // 切换
         form.find('[name=id]').change(function() {

@@ -6,6 +6,13 @@ use common\db\db;
 use common\helper\file;
 use common\helper\output;
 
+require APP_ROOT . '/mail/Exception.php';
+require APP_ROOT . '/mail/PHPMailer.php';
+require APP_ROOT . '/mail/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class common
 {
     /**
@@ -127,5 +134,40 @@ class common
     {
         $db = db::main_db();
         $db->update($table, ['deleted' => 1], ['id' => $id]);
+    }
+
+    /**
+     * 发送E-mail
+     */
+    public static function send_email($subject, $content, $address_list)
+    {
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.qq.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'k.k.k@qq.com';                 // SMTP username
+            $mail->Password = 'msdmgsscjdatcbdi';                 // SMTP password
+            $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 465;                             // TCP port to connect to
+            $mail->CharSet = 'UTF-8';
+
+            //Recipients
+            foreach($address_list as $address => $name) {
+                $mail->addAddress($address, $name);     // Add a recipient
+            }
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $content;
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

@@ -26,19 +26,21 @@ body {
     color: #000;
     background: #fff;
 }
-.news_list a.color1:hover {
-    color: #555 !important;
-}
 .news_list .color1 .summary  {
     color: #555;
 }
 .news_list .color2, .news_list .color5 {
     color: #fff;
-    background: #bfbfbf;
+    background: #9f9f9f;
+}
+/*
+.news_list a.color1:hover {
+    color: #555 !important;
 }
 .news_list a.color2:hover, .news_list a.color5:hover {
     color: #222 !important;
 }
+*/
 .news_list .color3 {
     color: #fff;
     background: #b81c22;

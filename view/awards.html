@@ -1,7 +1,26 @@
 {extends file='master.html'} {block name='head'}
+<link type="text/css" rel="stylesheet" href="/css/p_clients.css?v={$version}}">
 {/block} {block name='body'}
+<div class="c_big_img">
+    <img src="/upload/big_img/{$big_img['img']}"/>
+    <div class="text">
+        <div class="text1">{$big_img['text1']}</div>
+        <div class="text2">{$big_img['text2']}</div>
+    </div>
+</div>
 
-<div style="padding: 100px 0; text-align: center; font-size: 0.5rem;">页面开发中，尽请期待</div>
+<div class="list_bar">
+    {foreach $categorys as $category}
+    <div class="category">
+        <div class="name">{$category['name']}</div>
+        <div class="items c_clear">
+            {foreach $category['items'] as  $i => $item}
+            <div class="item"><img src="/upload/award_img/{$item['logo']}" title="{$item['name']}"/></div>
+            {/foreach}
+        </div>
+    </div>
+    {/foreach}
+</div>
 
 {/block} 
 {block name='foot'}

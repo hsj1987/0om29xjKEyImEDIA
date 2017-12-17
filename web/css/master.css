@@ -47,52 +47,84 @@ body {
     font-size: 14px;
 }
 
-a:hover {
-    color: #ddd !important;
-}
-
 #container {
     width: 100%;
 }
 
 /*master-头部*/
 #header {
-    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
     color: #fff;
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+}
+#header .top_bar, #header .top_bar .ico_open, #header .top_bar .curr_page, #header .top_bar .logo {
+    transition: all .5s; 
+    -moz-transition: all .5s;
+    -webkit-transition :all .5s;
+    -o-transition: all .5s;
 }
 #header a {
     color: #fff;
 }
 #header .top_bar {
-    height: 1.12rem;
-    background: #b81c22;
+    height: 1.63rem;
+    padding: 0 0.6rem 0 0.41rem;
 }
 #header .top_bar .ico_open {
-    width: 0.52rem;
-    height: 1.12rem;
-    margin-left: 0.42rem;
+    width: 0.81rem;
+    height: 100%;
     float: left;
     background: url(/img/ico1.png) no-repeat left center;
-    background-size: 0.52rem 0.52rem;
+    background-size: 0.81rem 0.81rem;
     cursor: pointer;
 }
 #header .top_bar .curr_page {
     padding-left: 0.55rem;
-    height: 1.12rem;
-    line-height: 1.12rem;
-    background: url(/img/ico2.png) no-repeat 10px center;
+    height: 100%;
+    line-height: 1.63rem;
+    background: url(/img/ico2.png) no-repeat 0.17rem center;
     background-size: 0.24rem 0.24rem;
     float: left;
-    font-size: 0.29rem;
+    font-size: 0.28rem;
+    font-weight: 500;
+    cursor: pointer;
 }
 #header .top_bar .logo {
-    height: 1.12rem;
-    line-height: 1.12rem;
+    height: 100%;
+    line-height: 1.63rem;
     float: right;
-    padding-right: 0.6rem;
     font-size: 0.29rem;
 }
+#header.header_red_fixed+#body {
+    margin-top: 1.12rem;
+}
+#header.header_red .top_bar {
+    height: 1.12rem;
+    background: #b81c22;
+}
+
+#header.header_red .top_bar .ico_open {
+    -webkit-transform: scale(.64);
+    transform: scale(.64);
+    -webkit-transform-origin: right;
+    transform-origin: right;
+}
+#header.header_red .top_bar .curr_page {
+    line-height: 1.12rem;
+}
+#header.header_red .top_bar .logo {
+    line-height: 1.12rem;
+}
+@media screen and (min-width: 320px){
+    #header .top_bar {
+        height: 1.43rem;
+        padding: 0 0.6rem 0 0.31rem;
+    }
+}
+
 #header .nav_bar {
     position: absolute;
     top: -10.8rem;
@@ -128,12 +160,14 @@ a:hover {
     top: 0.72rem;
     right: 0.72rem;
     font-size: 0.29rem;
+    font-weight: 300;
     cursor: pointer;
 }
 #header .navs {
     width: 50%;
     padding-left: 10%;
     float: left;
+    font-weight: 300;
 }
 #header .navs .title {
     font-size: 0.26rem;
@@ -144,11 +178,12 @@ a:hover {
 #header .navs .pages li {
     list-style: none;
     font-size: 0.5rem;
-    padding-top: 0.25rem;
+    padding-top: 0.2rem;
     white-space: nowrap;
 }
 #header .navs .pages li a {
     color: #999;
+    transition: all .5s;
 }
 #header .navs .pages li a:hover {
     color: #fff;
@@ -156,10 +191,11 @@ a:hover {
 #header .offices {
     width: 50%;
     float: left;
+    font-weight: 300;
 }
 #header .offices li {
     list-style: none;
-    font-size: 0.26rem;
+    font-size: 0.26rem;    
     padding-top: 0.10rem;
 }
 #header .offices .title {
@@ -282,15 +318,17 @@ a:hover {
 .c_img_bar .bottom_info .info {
     position: absolute;
     left: 1.42rem;
-    top: 0.5rem;
+    top: 0.3rem;
     width: 100%;
 }
 .c_img_bar .bottom_info .name {
     font-size: 0.22rem;
+    font-weight: 300;
 }
 .c_img_bar .bottom_info .title {
     font-size: 0.29rem;
     padding-top: 0.08rem;
+    font-weight: 500;
 }
 
 /*3列图，标题居中*/
@@ -324,6 +362,7 @@ a:hover {
     height: 100%;
     padding: 0.5rem;
     font-size: 0.54rem;
+    font-weight: 500;
     line-height: 0.7rem;
 }
 
@@ -341,15 +380,16 @@ a:hover {
     width: 100%;
     height: 100%;
     color: #fff;
+    font-weight: 500;
 }
 @media screen and (min-width: 320px){
     .c_big_img .text {
         width: 100%;
         padding-left: 0.5rem;
-        padding-top: 0.5rem;
+        padding-top: 1.3rem;
     }
     .c_big_img .text1 {
-        font-size: 0.45rem;
+        font-size: 0.35rem;
     }
     .c_big_img .text2 {
         font-size: 0.3rem;
@@ -359,10 +399,10 @@ a:hover {
     .c_big_img .text {
         width: 100%;
         padding-left: 0.6rem;
-        padding-top: 0.6rem;
+        padding-top: 1.4rem;
     }
     .c_big_img .text1 {
-        font-size: 0.5rem;
+        font-size: 0.4rem;
     }
     .c_big_img .text2 {
         font-size: 0.35rem;
@@ -372,10 +412,10 @@ a:hover {
     .c_big_img .text {
         width: 100%;
         padding-left: 0.5rem;
-        padding-top: 0.5rem;
+        padding-top: 1.45rem;
     }
     .c_big_img .text1 {
-        font-size: 0.6rem;
+        font-size: 0.5rem;
     }
     .c_big_img .text2 {
         font-size: 0.4rem;
@@ -438,4 +478,20 @@ a:hover {
     -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     -moz-transform: rotate(180deg);	
+}
+
+/*缩放效果*/
+.c_zoom .c_zoom_content, .c_zoom_full, .c_zoom_text {
+    transition: all .3s;
+}
+.c_zoom:hover .c_zoom_content {
+	-webkit-transform: scale(1.05) translate(5px,5px);
+	transform: scale(1.05) translate(5px,5px);
+}
+.c_zoom_full:hover {
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+}
+.c_zoom_text:hover {
+    font-size: 105%;
 }

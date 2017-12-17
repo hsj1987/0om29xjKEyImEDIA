@@ -13,34 +13,34 @@
 </head>
 <body>
 <div id="container">
-<div id="header">
+<div id="header" {if $header_red_fixed}class="header_red header_red_fixed"{/if}>
     <div class="top_bar c_clear">
-        <div class="ico_open"></div>
-        <div class="curr_page">{$page_name}</div>
-        <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
+        <div class="ico_open c_vcenter"></div>
+        <div class="curr_page c_vcenter">{$page_name}</div>
+        <div class="logo c_vcenter"><a href="/index.html" class="c_zoom_text">KEYIMEDIA</a></div>
     </div>
     <div class="nav_bar">
         <div class="ico_close"></div>
-        <div class="logo"><a href="/index.html">KEYIMEDIA</a></div>
+        <div class="logo"><a href="/index.html" class="c_zoom_text">KEYIMEDIA</a></div>
         <div class="navs">
             <div class="title">NAVIGATION</div>
             <ul class="pages">
-                <li><a href="/index.html">HOME</a></li>
-                <li><a href="/work_index.html">WORK</a></li>
-                <li><a href="/service.html">SERVICE</a></li>    
-                <li><a href="/news_list.html">NEWS</a></li>
-                <li><a href="/clients.html">CLIENTS</a></li>
-                <li><a href="/awards.html">AWARDS</a></li>
-                <li><a href="/recruit.html">RECRUIT</a></li>
-                <li><a href="/contact_us.html">CONTACT US</a></li>
+                <li><a href="/index.html" class="c_zoom_text">HOME</a></li>
+                <li><a href="/work_index.html" class="c_zoom_text">WORK</a></li>
+                <li><a href="/service.html" class="c_zoom_text">SERVICE</a></li>    
+                <li><a href="/news_list.html" class="c_zoom_text">NEWS</a></li>
+                <li><a href="/clients.html" class="c_zoom_text">CLIENTS</a></li>
+                <li><a href="/awards.html" class="c_zoom_text">AWARDS</a></li>
+                <li><a href="/recruit.html" class="c_zoom_text">RECRUIT</a></li>
+                <li><a href="/contact_us.html" class="c_zoom_text">CONTACT US</a></li>
             </ul>
         </div>
         <div class="offices">
             <div class="title">OUR OFFICES</div>
             <ul class="pages">
-                <li><a href="javascript:;">SHANGHAI</a></li>
-                <li><a href="javascript:;">BEIJING</a></li>
-                <li><a href="javascript:;">GUANGZHOU</a></li>
+                <li><a href="javascript:;" class="c_zoom_text">SHANGHAI</a></li>
+                <li><a href="javascript:;" class="c_zoom_text">BEIJING</a></li>
+                <li><a href="javascript:;" class="c_zoom_text">GUANGZHOU</a></li>
             </ul>
         </div>
     </div>
@@ -53,10 +53,10 @@
 <div id="footer">
     <div class="link_bar c_clear">
         <div class="links">
-            <a class="logo" href="/index.html"><img src="/img/logo.png"/></a><a class="contact" href="/contact_us.html">CONTACT US</a>
+            <a class="logo c_zoom_full" href="/index.html"><img src="/img/logo.png"/></a><a class="contact c_zoom_full" href="/contact_us.html">CONTACT US</a>
         </div>
         <div class="jiathis_style_32x32">
-            <a class="jiathis_button_tsina share_weibo"></a><a class="jiathis_button_weixin share_weixin"></a>
+            <a class="jiathis_button_tsina share_weibo c_zoom_full"></a><a class="jiathis_button_weixin share_weixin c_zoom_full"></a>
         </div>
     </div>
     <div class="right_info">
@@ -68,15 +68,31 @@
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/utils.js?v={$version}"></script>
+<script src="/js/validate.js?v={$version}"></script>
 <script>
     $('#header .nav_bar .ico_close').click(function(){
         $('#header .nav_bar').removeClass('nav_bar_show');
     });
-    $('#header .top_bar .ico_open').click(function(){
+    $('#header .top_bar .ico_open,#header .top_bar .curr_page').click(function(){
         $('#header .nav_bar').addClass('nav_bar_show');
     });
+
+    var header = $('#header');
+        if (!header.hasClass('header_red')) {
+        $(window).scroll(function() {
+            var wt = $(window).scrollTop();
+            header.toggleClass('header_red', wt >= 10);
+        });
+    }
 </script>
 {block name='foot'}{/block}
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script>
+    var jiathis_config1 = {
+        title: "科翼传媒",
+        summary: "分享的文本摘要",
+        pic: "http://localhost/upload/big_img/1_img_1513407593.jpg"
+    };
+</script>
 </body>
 </html>

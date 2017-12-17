@@ -1,8 +1,67 @@
 {extends file='master.html'} {block name='head'}
+<link type="text/css" rel="stylesheet" href="/css/p_recruit.css?v={$version}}">
 {/block} {block name='body'}
 
-<div style="padding: 100px 0; text-align: center; font-size: 0.5rem;">页面开发中，尽请期待</div>
+<div class="c_big_img">
+    <img src="/upload/big_img/{$big_img['img']}"/>
+    <div class="text">
+        <div class="text1">{$big_img['text1']}</div>
+        <div class="text2">{$big_img['text2']}</div>
+    </div>
+</div>
 
+<div id="p_recruit">
+    <div class="tabs_bar">
+        <ul class="tabs c_clear">
+            {foreach $recruit_areas as $i => $area}
+            <li aid="{$area['id']}" class="{if $i==0}curr{/if}">
+                <div class="line"></div>
+                <div class="name">{$area['name']}</div>
+            </li>
+            {/foreach}
+        </li>
+    </div>
+
+    <div class="content_bar">
+        {foreach $recruit_areas as $i => $area}
+            <div class="content {if $i==0}curr{/if}" aid="{$area['id']}">
+                {foreach $area['items'] as $item}
+                    <div class="item">
+                        <div class="title">{$item['title']}</div>
+                        <div class="desc">{$item['desc']}</div>
+                    </div>
+                {/foreach}
+            </div>
+        {/foreach}
+    </div>
+
+    <div class="submit_bar">
+        <div class="item form-group">
+            <label class="control-label">NAME <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="name" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">APPLY FOR POSITION <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="position" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">SELF INTRODUCTION <i>*</i></label>
+            <div class="control">
+                <textarea name="introduction" class="text" maxlength="1024" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="item">
+            <div class="control">
+                <button id="btn_submit">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+</div>
 {/block} 
 {block name='foot'}
+<script src="/js/p_recruit.js?v={$version}"></script>
 {/block}

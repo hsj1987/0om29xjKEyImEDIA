@@ -178,7 +178,7 @@
 
         // 获取label
         if (options.label == '') {
-            options.label = input.closest('.form-group').find('label.control-label').text().replace('* ','')
+            options.label = input.closest('.form-group').find('label.control-label').text().replace('* ','').replace(' *','')
         }
 
         // 验证

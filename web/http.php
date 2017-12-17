@@ -1,4 +1,5 @@
 <?php
+
 // 当前APP根目录
 define('APP_ROOT', dirname(__DIR__));
 

@@ -1,9 +1,60 @@
 {extends file='master.html'} {block name='head'}
+<link type="text/css" rel="stylesheet" href="/css/p_recruit.css?v={$version}}">
 {/block} {block name='body'}
 
-<div style="padding: 100px 0; text-align: center; font-size: 0.5rem;">页面开发中，尽请期待</div>
+<div class="c_big_img">
+    <img src="/upload/big_img/{$big_img['img']}"/>
+    <div class="text">
+        <div class="text1">{$big_img['text1']}</div>
+        <div class="text2">{$big_img['text2']}</div>
+    </div>
+</div>
 
+<div class="c_text_bar">
+    {$rtf}
+</div>
 
+<div id="p_recruit">
+    <div class="submit_bar">
+        <div class="title">WE'D LIKE TO HEAR FROM YOU</div>
+        <div class="item form-group">
+            <label class="control-label">NAME <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="name" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">EMAIL <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="email" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">TELEPHONE <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="telephone" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">COMPANY <i>*</i></label>
+            <div class="control">
+                <input type="text" class="text" name="company" maxlength="32"/>
+            </div>
+        </div>
+        <div class="item form-group">
+            <label class="control-label">MESSAGE <i>*</i></label>
+            <div class="control">
+                <textarea name="message" class="text" maxlength="1024" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="item">
+            <div class="control">
+                <button id="btn_submit">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+</div>
 {/block} 
 {block name='foot'}
+<script src="/js/p_contact_us.js?v={$version}"></script>
 {/block}

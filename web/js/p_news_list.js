@@ -34,7 +34,7 @@ var Page = {
                     if (color_num == 0) {
                         color_num = 5;
                     }
-                    html += '<a class="news_item color'+ color_num +'" href="news.html?id='+item.id+'">';
+                    html += '<a class="news_item c_zoom_full color'+ color_num +'" href="news.html?id='+item.id+'">';
                     html += '<div class="date">' + item.create_time + '</div>';
                     html += '<div class="title">' + item.title + '</div>';
                     html += '<div class="summary">' + item.summary + '</div>';

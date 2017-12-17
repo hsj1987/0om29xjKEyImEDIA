@@ -67,7 +67,7 @@ var Page = {
 
         init : function() {
             this.view = $('#data_detail');
-            this.view.find('[name=contents]').summernote({height: 300, lang: 'zh-CN'});
+            Common.initSummernote(this.view.find('[name=contents]'));
 
             // 取消
             $('#btn_cancel,.c_detail_close').click(function(){

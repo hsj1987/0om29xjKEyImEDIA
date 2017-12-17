@@ -15,6 +15,10 @@ class controller_clients extends controller_base
     {
         $this->assign('page_name', 'OUT CLIENTS');
 
+        $big_img = model::get_big_img_config(5);
+        common::parse_data($big_img, ['text1' => 'nl2br', 'text2' => 'nl2br']);
+        $this->assign('big_img', $big_img);
+
         $categorys = sys_config::instance()->get_data_list('enum', 'client_category');
         $db = db::main_db();
         $categorys2 = [];
