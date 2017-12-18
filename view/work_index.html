@@ -18,8 +18,8 @@
 <div class="works_bar swiper-container">
     <div class="swiper-wrapper">
         {foreach $works as $work}
-        <a class="bar_item c_zoom c_img_bar swiper-slide" href="work.html?id={$work['id']}">
-            <img class="main_img c_zoom_content" src="/upload/work_img/{$work['index_img']}"/>
+        <a class="bar_item c_img_bar swiper-slide" href="work.html?id={$work['id']}">
+            <img class="main_img" src="/upload/work_img/{$work['index_img']}"/>
             <div class="bottom_info c_clear">
                 <div class="bottom_bg"></div>
                 <div class="logo"><img src="/upload/work_img/{$work['index_logo']}"/></div>

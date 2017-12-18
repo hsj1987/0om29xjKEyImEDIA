@@ -40,7 +40,6 @@
             <ul class="pages">
                 <li><a href="javascript:;" class="c_zoom_text">SHANGHAI</a></li>
                 <li><a href="javascript:;" class="c_zoom_text">BEIJING</a></li>
-                <li><a href="javascript:;" class="c_zoom_text">GUANGZHOU</a></li>
             </ul>
         </div>
     </div>
@@ -51,15 +50,13 @@
 </div>
 
 <div id="footer">
-    <div class="link_bar c_clear">
-        <div class="links">
-            <a class="logo c_zoom_full" href="/index.html"><img src="/img/logo.png"/></a><a class="contact c_zoom_full" href="/contact_us.html">CONTACT US</a>
-        </div>
-        <div class="jiathis_style_32x32">
-            <a class="jiathis_button_tsina share_weibo c_zoom_full"></a><a class="jiathis_button_weixin share_weixin c_zoom_full"></a>
-        </div>
+    <div class="links">
+        <a class="logo c_zoom_full" href="/index.html"><img src="/img/logo.png"/></a><a class="contact c_zoom_full" href="/contact_us.html">CONTACT US</a>
     </div>
-    <div class="right_info">
+    <div class="jiathis_style_32x32">
+        <a class="jiathis_button_tsina share_weibo c_zoom_full"></a><a class="jiathis_button_weixin share_weixin c_zoom_full"></a>
+    </div>
+    <div class="right_info c_vcenter">
         © 2017 KEYIMEDIA AGENCY CO.,LTD. ALL RIGHTS RESERVED
     </div>
 </div>
@@ -70,25 +67,39 @@
 <script src="/js/utils.js?v={$version}"></script>
 <script src="/js/validate.js?v={$version}"></script>
 <script>
-    $('#header .nav_bar .ico_close').click(function(){
-        $('#header .nav_bar').removeClass('nav_bar_show');
-    });
-    $('#header .top_bar .ico_open,#header .top_bar .curr_page').click(function(){
-        $('#header .nav_bar').addClass('nav_bar_show');
-    });
-
-    function init_header()
-    {
-        var wt = $(window).scrollTop();
-        $('#header').toggleClass('header_red', wt >= 10);
-    }
-
-    if (!$('#header').hasClass('header_red')) {
-        $(window).scroll(function() {
-            init_header();
+    $(function(){
+        // header事件
+        $('#header .nav_bar .ico_close').click(function(){
+            $('#header .nav_bar').removeClass('nav_bar_show');
         });
-        init_header();
-    }
+        $('#header .top_bar .ico_open,#header .top_bar .curr_page').click(function(){
+            $('#header .nav_bar').addClass('nav_bar_show');
+        });
+
+        // 初始化header
+        function init_header()
+        {
+            var wt = $(window).scrollTop();
+            $('#header').toggleClass('header_red', wt >= 10);
+        }
+        var header_red = $('#header').hasClass('header_red');
+        if (!header_red) {
+            $(window).scroll(function() {
+                init_header();
+            });
+            init_header();
+        }
+
+        // big_img
+        function init_big_img()
+        {
+            $('.c_big_img table').height($('.c_big_img').height());
+        }
+        $(window).resize(function() {
+            init_big_img();
+        });
+        init_big_img();
+    });
 </script>
 {block name='foot'}{/block}
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>

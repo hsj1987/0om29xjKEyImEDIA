@@ -5,13 +5,15 @@ $(function() {
 var Page = {
     init: function() {
         var tab_items = $('.tabs_bar li');
-        tab_items.click(function() {
-            tab_items.removeClass('curr');
-            $(this).addClass('curr');
+        tab_items.hover(function() {
             var aid = $(this).attr('aid');
-            var content_items = $('.content_bar .content');
-            content_items.hide();
-            content_items.filter('[aid='+aid+']').fadeIn();
+            if (aid != tab_items.filter('.curr').attr('aid')) {
+                tab_items.removeClass('curr');
+                $(this).addClass('curr');
+                var content_items = $('.content_bar .content');
+                content_items.hide();
+                content_items.filter('[aid='+aid+']').fadeIn();
+            }
         });
 
         $('#btn_submit').click(function() {

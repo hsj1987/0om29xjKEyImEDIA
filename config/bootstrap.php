@@ -1,6 +1,11 @@
 <?php
 
-define('CURR_ENV_NAME', 'test');
+define('CURR_ENV_NAME', 'production');
+
+$VERSION_INFO = [
+    'num' => '1.1',
+    'make_time' => '2017-12-18'
+];
 
 // WEB LOG配置
 $WEB_LOG_CONFIG = [

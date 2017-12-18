@@ -66,6 +66,14 @@ class admin_controller_base extends \common\frame\web\controller_base
                     ],
                 ]
             ];
+            if (user::curr_username() == 'admin') {
+                $pages['系统管理'] = [
+                    [
+                        'name' => '执行SQL',
+                        'url' => 'execute_sql'
+                    ]
+                ];
+            }
             $this->assign('nav_pages', $pages);
 
             // 加载当前用户信息

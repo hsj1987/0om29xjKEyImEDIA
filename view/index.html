@@ -4,10 +4,13 @@
 
 <div class="c_big_img">
     <img src="/upload/big_img/{$big_img['img']}"/>
-    <div class="text">
-        <div class="text1">{$big_img['text1']}</div>
-        <div class="text2">{$big_img['text2']}</div>
-    </div>
+    <table class="text">
+        <tr><td>
+            <span class="text1">{$big_img['text1']}</span>
+            <br/>
+            <span class="text2">{$big_img['text2']}</span>
+        </td></tr>
+    </table>
 </div>
 
 <div class="c_text_bar">
@@ -15,7 +18,7 @@
 </div>
 <div class="img_bars c_clear">
     {foreach $index_configs as $id => $config}
-    <a class="bar_item c_zoom c_img_bar {$config['size']} {$config['only_text']} bar_item_{$id}" href="{$config['link']}">
+    <a class="bar_item {if $id!=6}c_zoom{/if} c_img_bar {$config['size']} {$config['only_text']} bar_item_{$id}" href="{$config['link']}">
         {if $config['only_text'] == 'only_text'}
             <div class="text_title c_zoom_content">{$config['title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
             <div class="text_desc c_zoom_content">{$config['desc']}</div>
@@ -29,6 +32,7 @@
                     <div class="title">{$config['title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
                 </div>
             </div>
+            {if $id!=6}<div class="grey_layer"></div>{/if}
         {/if}
     </a>
     {/foreach}

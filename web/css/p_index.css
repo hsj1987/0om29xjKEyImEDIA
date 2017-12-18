@@ -38,4 +38,17 @@
     padding-top: 0.35rem;
     font-weight: 300;
 }
+.img_bars .bar_item .grey_layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+    opacity: .5;
+    transition: all .3s;
+}
+.img_bars .bar_item:hover .grey_layer {
+    opacity: 0;
+}
 

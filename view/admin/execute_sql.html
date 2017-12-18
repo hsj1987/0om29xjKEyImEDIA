@@ -1,0 +1,25 @@
+{extends file='admin/master.html'} {block name='title'}执行SQL{/block} {block name='head'}
+{/block} {block name='body'}
+    <div class="col-md-10">
+        <div class="form-horizontal" role="form" id="form">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><i>*</i> SQL</label>
+                    <div class="col-md-10">
+                            <textarea class="form-control" rows="6" name="sql"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn green col-md-3" id="btn_submit">执行</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block} 
+{block name='foot'}
+<script src="js/p_execute_sql.js?v={$version}"></script>
+{/block}
