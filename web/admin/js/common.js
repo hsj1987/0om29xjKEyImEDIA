@@ -25,7 +25,7 @@ var Common = {
             lang: 'zh-CN',
             fontNames: [
                 '黑体', '楷体', '宋体', '新宋体', '仿宋', '微软雅黑',
-                'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
+                "Open Sans", "sans-serif", 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
                 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
                 'Tahoma', 'Times New Roman', 'Verdana' 
             ]

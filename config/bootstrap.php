@@ -1,9 +1,9 @@
 <?php
 
-define('CURR_ENV_NAME', 'production');
+define('CURR_ENV_NAME', 'test');
 
 $VERSION_INFO = [
-    'num' => '1.1',
+    'num' => '1.2',
     'make_time' => '2017-12-18'
 ];
 
