@@ -29,7 +29,7 @@ class controller_clients extends controller_base
                     'is_display' => 1,
                     'deleted' => 0
                 ],
-                'SORT' => 'sort_num,create_time DESC'
+                'ORDER' => 'sort_num,create_time DESC'
             ]);
             if ($items) {
                 $categorys2[] = [

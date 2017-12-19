@@ -29,7 +29,7 @@ class controller_recruit extends controller_base
                     'is_display' => 1,
                     'deleted' => 0
                 ],
-                'SORT' => 'sort_num,create_time DESC'
+                'ORDER' => 'sort_num,create_time DESC'
             ]);
             common::parse_data($items, ['desc' => 'nl2br']);
             $areas2[] = [

@@ -7,6 +7,7 @@
     <a class="bar_item c_zoom" href="work.html?cid={$category['id']}">
         <img  src="/upload/work_category_img/{$category['img']}" class="c_zoom_content"/>
         <table class="title"><tr><td>{$category['title']}</td></tr></table>
+        <div class="grey_layer"></div>
     </a>
     {/foreach}
 </div>
@@ -23,10 +24,11 @@
             <div class="bottom_info c_clear">
                 <div class="bottom_bg"></div>
                 <div class="logo"><img src="/upload/work_img/{$work['index_logo']}"/></div>
-                <div class="info">
-                    <div class="name">{$work['index_name']}</div>
-                    <div class="title">{$work['index_title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></div>
-                </div>
+                <table class="info"><td>
+                    <span class="name">{$work['index_name']}</span>
+                    <br/>
+                    <span class="title">{$work['index_title']}&nbsp;&nbsp;<img class="c_link_ico" src="/img/ico8.png"/></span>
+                </td></table>
             </div>
         </a>
         {/foreach}

@@ -28,7 +28,8 @@ var Common = {
                 "Open Sans", "sans-serif", 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
                 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
                 'Tahoma', 'Times New Roman', 'Verdana' 
-            ]
+            ],
+            fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '26', '28', '30', '32', '36', '40', '44', '48', '52'],
         });
     }
 };
