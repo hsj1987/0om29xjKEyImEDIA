@@ -5,6 +5,7 @@ use app\common\admin_controller_base;
 use common\db\db;
 use common\helper\output;
 use app\common\common;
+use common\helper\utils;
 
 class controller_news_manage extends admin_controller_base
 {
@@ -56,8 +57,10 @@ class controller_news_manage extends admin_controller_base
 
     public function action_save()
     {
+        $raw_post_data = file_get_contents('php://input', 'r');
+        $post = utils::url_params_to_json($raw_post_data);
         $data_cols = ['summary', 'title', 'contents', 'is_display', 'sort_num'];
-        $res = common::save_data('news', $_POST, 'id', $data_cols);
+        $res = common::save_data('news', $post, 'id', $data_cols);
         return $res;
     }
 

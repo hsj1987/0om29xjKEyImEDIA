@@ -118,10 +118,13 @@ body {
 #header.header_red .top_bar .logo {
     line-height: 1.12rem;
 }
-@media screen and (min-width: 320px){
+@media screen and (max-width: 414px){
     #header .top_bar {
         height: 1.43rem;
         padding: 0 0.6rem 0 0.31rem;
+    }
+    #header .top_bar .curr_page, #header .top_bar .logo {
+        line-height: 1.43rem;
     }
 }
 

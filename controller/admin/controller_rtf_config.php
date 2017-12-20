@@ -5,6 +5,7 @@ use app\common\admin_controller_base;
 use common\db\db;
 use common\helper\file;
 use common\helper\output;
+use common\helper\utils;
 
 class controller_rtf_config extends admin_controller_base
 {
@@ -26,8 +27,10 @@ class controller_rtf_config extends admin_controller_base
 
     public function action_save()
     {
-        $id = $_POST['id'];
-        $contents = $_POST['contents'];
+        $raw_post_data = file_get_contents('php://input', 'r');
+        $post = utils::url_params_to_json($raw_post_data);
+        $id = $post['id'];
+        $contents = $post['contents'];
 
         // 保存数据
         $db = db::main_db();

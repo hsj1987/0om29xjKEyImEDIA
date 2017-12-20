@@ -5,6 +5,7 @@ use app\common\admin_controller_base;
 use common\db\db;
 use common\helper\output;
 use app\common\common;
+use common\helper\utils;
 
 class controller_work_manage extends admin_controller_base
 {
@@ -60,15 +61,17 @@ class controller_work_manage extends admin_controller_base
 
     public function action_save()
     {
+        $raw_post_data = file_get_contents('php://input', 'r');
+        $post = utils::url_params_to_json($raw_post_data);
         $img_path = APP_ROOT . '/web/upload/work_img';
-        $is_in_index = $_POST['is_in_index'];
+        $is_in_index = $post['is_in_index'];
         $data_cols = ['category_id', 'title', 'contents', 'is_display', 'sort_num', 'is_in_index'];
         $img_cols = ['img'];
         if ($is_in_index) {
             $data_cols = array_merge($data_cols, ['index_name', 'index_title']);
             $img_cols = array_merge($img_cols, ['index_img', 'index_logo']);
         }
-        $res = common::save_data('work', $_POST, 'id', $data_cols, $img_cols, $img_path);
+        $res = common::save_data('work', $post, 'id', $data_cols, $img_cols, $img_path);
         return $res;
     }
 
