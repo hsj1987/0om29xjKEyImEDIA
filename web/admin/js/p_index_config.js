@@ -27,7 +27,6 @@ var Page = {
                     data : {
                         id : id
                     },
-                    showLoading : false,
                     success : function(result) {
                         if (result.data.img) {
                             result.data.img = '/upload/index_img/' + result.data.img;

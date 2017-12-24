@@ -27,6 +27,7 @@ class controller_work extends controller_base
                 'is_display' => 1,
                 'deleted' => 0,
                 'id[!]' => $data['id'],
+                'category_id' => $data['category_id'],
                 'sort_num[>=]' => $data['sort_num'],
                 'create_time[<=]' => $data['create_time'] 
             ]
@@ -38,6 +39,7 @@ class controller_work extends controller_base
                 'is_display' => 1,
                 'deleted' => 0,
                 'id[!]' => $data['id'],
+                'category_id' => $data['category_id'],
                 'sort_num[<=]' => $data['sort_num'],
                 'create_time[>=]' => $data['create_time'] 
             ]

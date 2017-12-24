@@ -5,6 +5,7 @@ use common\helper\utils;
 use common\db\db;
 use common\helper\file;
 use common\helper\output;
+use common\log\log;
 
 require APP_ROOT . '/mail/Exception.php';
 require APP_ROOT . '/mail/PHPMailer.php';
@@ -18,22 +19,50 @@ class common
     /**
      * 保存数据
      */
-    public static function save_data($table, $data_source, $id_col, $data_cols = null, $img_cols = null, $img_path = null)
+    public static function save_data($table, $data_source, $id_col, $data_cols = null, $img_cols = null, $img_path = null, $rtf_cols = null)
     {
         $id = $data_source[$id_col];
-
-        // 设置数据
-        $data = [];
-        if (is_array($data_cols) && $data_cols) {
-            foreach ($data_cols as $data_col) {
-                $data[$data_col] = $data_source[$data_col];
-            }
-        }
 
         $db = db::main_db();
         $db->begintran();
 
         try {
+            // 从富文本中抽出图片上传并替换
+            if ($rtf_cols) {
+                $rtf_img_web_path = '/upload/rtf_img';
+                $rtf_img_path = APP_ROOT . '/web' . $rtf_img_web_path;
+                foreach ($rtf_cols as $rtf_col) {
+                    if (preg_match_all('/data:\s*image\/\w+;base64,[^"]+/', $data_source[$rtf_col], $matches, PREG_OFFSET_CAPTURE)) {
+                        $prev_match_length = 0;
+                        $prev_web_uri_length = 0;
+                        $matches = $matches[0];
+                        foreach ($matches as $match) {
+                            $base64_data = $match[0];
+                            $match_length = strlen($base64_data);
+                            $match_pos = $match[1] - ($prev_match_length - $prev_web_uri_length);
+                            $img_name = utils::uuid();
+                            $img_name = file::upload_img_by_base64($base64_data, $rtf_img_path, $img_name);
+                            if (!$img_name) {
+                                $db->rollback();
+                                return output::err(1, '富文本里的图片上传失败');
+                            }
+                            $rtf_img_web_uri = $rtf_img_web_path . '/' . $img_name;
+                            $data_source[$rtf_col] = substr_replace($data_source[$rtf_col], $rtf_img_web_uri, $match_pos, $match_length);
+                            $prev_match_length = $match_length;
+                            $prev_web_uri_length = strlen($rtf_img_web_uri);
+                        }
+                    }
+                }
+            }
+
+            // 设置数据
+            $data = [];
+            if (is_array($data_cols) && $data_cols) {
+                foreach ($data_cols as $data_col) {
+                    $data[$data_col] = $data_source[$data_col];
+                }
+            }
+
             // 保存数据
             if ($data) {
                 if ($id) {
@@ -81,6 +110,7 @@ class common
             return output::ok($img_data);
         } catch (\Exception $e) {
             $db->rollback();
+            log::error($e);
             return output::err(1, '保存失败');
         }
     }

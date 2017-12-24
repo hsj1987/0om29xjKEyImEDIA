@@ -8,7 +8,6 @@ var Common = {
                 data : {
                     id : id
                 },
-                showLoading : false,
                 success : function(result) {
                     if ($.isFunction(parse_data)) {
                         result.data = parse_data(result.data);

@@ -11,21 +11,7 @@ var Page = {
 
         // 切换
         form.find('[name=id]').change(function() {
-            var id = $(this).val();
-            if (id == '') {
-                rtf_contents.code('');
-            } else {
-                Utils.ajax({
-                    action: 'get_contents',
-                    data : {
-                        id : id
-                    },
-                    showLoading : false,
-                    success : function(result) {
-                        rtf_contents.code(result.data);
-                    }
-                });
-            }
+            Page.load();
         });
 
         // 保存
@@ -54,8 +40,29 @@ var Page = {
                     id : res.data.id,
                     contents : contents
                 },
-                tip : '保存成功！'
+                tip : '保存成功！',
+                success : function(result) {
+                    Page.load();
+                }
             });
         });
+    },
+
+    // 加载数据
+    load: function() {
+        var id = $('#form').find('[name=id]').val();
+        if (id == '') {
+            $('#rtf_contents').code('');
+        } else {
+            Utils.ajax({
+                action: 'get_contents',
+                data : {
+                    id : id
+                },
+                success : function(result) {
+                    $('#rtf_contents').code(result.data);
+                }
+            });
+        }
     }
 };

@@ -11,7 +11,8 @@ $VERSION_INFO = [
 $WEB_LOG_CONFIG = [
     'outputs' => [
         'logagent' => [
-            'class' => 'common\log\output_file' // output类
+            'class' => 'common\log\output_file', // output类
+            'logs' => [] // 只记录错误log
         ]
     ]
 ];

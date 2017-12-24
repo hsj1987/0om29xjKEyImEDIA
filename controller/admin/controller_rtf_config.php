@@ -6,6 +6,7 @@ use common\db\db;
 use common\helper\file;
 use common\helper\output;
 use common\helper\utils;
+use app\common\common;
 
 class controller_rtf_config extends admin_controller_base
 {
@@ -33,13 +34,10 @@ class controller_rtf_config extends admin_controller_base
         $contents = $post['contents'];
 
         // 保存数据
-        $db = db::main_db();
-        $data = [
-            'contents' => $contents,
-        ];
-        $db->update('rtf_config', $data , [
-            'id' => $id
-        ]);
+        $res = common::save_data('rtf_config', $post, 'id', ['contents'], null, null, ['contents']);
+        if ($res['stat'] !== 0) {
+            return $res;
+        }
         return output::ok();
     }
 }

@@ -71,7 +71,8 @@ class controller_work_manage extends admin_controller_base
             $data_cols = array_merge($data_cols, ['index_name', 'index_title']);
             $img_cols = array_merge($img_cols, ['index_img', 'index_logo']);
         }
-        $res = common::save_data('work', $post, 'id', $data_cols, $img_cols, $img_path);
+        $rtf_cols = ['contents'];
+        $res = common::save_data('work', $post, 'id', $data_cols, $img_cols, $img_path, $rtf_cols);
         return $res;
     }
 

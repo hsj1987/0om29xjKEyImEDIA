@@ -61,7 +61,8 @@ class controller_news_manage extends admin_controller_base
         $raw_post_data = file_get_contents('php://input', 'r');
         $post = utils::url_params_to_json($raw_post_data);
         $data_cols = ['summary', 'title', 'date', 'contents', 'is_display', 'sort_num'];
-        $res = common::save_data('news', $post, 'id', $data_cols);
+        $rtf_cols = ['contents'];
+        $res = common::save_data('news', $post, 'id', $data_cols, null, null, $rtf_cols);
         return $res;
     }
 
