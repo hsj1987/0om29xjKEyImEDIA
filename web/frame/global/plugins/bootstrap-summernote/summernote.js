@@ -3908,7 +3908,8 @@
           width: Math.min($editable.width(), $image.width())
         });
         range.create().insertNode($image[0]);
-        range.createFromNodeAfter($image[0]).select();
+        $image.wrap('<div style="text-align: center"></div>');
+        range.createFromNodeAfter($image[0].parent('div')).select();
         afterCommand($editable);
       }).fail(function () {
         var $holder = dom.makeLayoutInfo($editable).holder();

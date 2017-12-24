@@ -48,8 +48,8 @@ class common
                             }
                             $rtf_img_web_uri = $rtf_img_web_path . '/' . $img_name;
                             $data_source[$rtf_col] = substr_replace($data_source[$rtf_col], $rtf_img_web_uri, $match_pos, $match_length);
-                            $prev_match_length = $match_length;
-                            $prev_web_uri_length = strlen($rtf_img_web_uri);
+                            $prev_match_length += $match_length;
+                            $prev_web_uri_length += strlen($rtf_img_web_uri);
                         }
                     }
                 }
