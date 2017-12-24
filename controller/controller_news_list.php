@@ -31,8 +31,8 @@ class controller_news_list extends controller_base
                 'deleted' => 0
             ]
         ];
-        $news_list = $db->get_paged('news', ['id', 'title', 'summary', 'create_time'], $page_no, $page_size, $where, 'sort_num, create_time desc');
-        common::parse_data($news_list, ['create_time' => 'date_cn']);
+        $news_list = $db->get_paged('news', ['id', 'title', 'summary', 'date'], $page_no, $page_size, $where, 'sort_num, date desc');
+        common::parse_data($news_list, ['date' => 'date_cn']);
         
         if ($_POST['get_total']) {
             $total = $db->count('news', $where);

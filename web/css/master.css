@@ -223,7 +223,6 @@ body {
     background: #b81c22;
     color: #fff;
     position: relative;
-    height: 1.4rem;
 }
 #footer a {
     color: #fff;
@@ -264,14 +263,22 @@ body {
 }
 #footer .right_info {
     width: 100%;
-    height: 100%;
+    height: 1.4rem;
     text-align: center;
     font-size: 0.14rem;
     font-weight: 300;
+    line-height: 1.3;
 }
 #footer .right_info td {
     width: 100%;
     height: 100%;
+    padding: 0 20px;
+}
+#footer .icp_info {
+    font-size: 0.14rem;
+    font-weight: 300;
+    text-align: center;
+    padding: 0 20px 0.5rem;
 }
 
 @media screen and (min-width: 1920px){
@@ -285,16 +292,16 @@ body {
     }
 }
 @media screen and (max-width: 1680px){
-    #footer .right_info {
+    #footer .right_info, #footer .icp_info {
         font-size: 12px;
     }
 }
 @media screen and (max-width: 768px){
-    #footer {
-        height: 2.4rem;
-    }
     #footer .right_info {
-        padding-top: 1rem;
+        padding-top: 1.4rem;
+    }
+    #footer .icp_info {
+        padding-top: 0.2rem;
     }
 }
 

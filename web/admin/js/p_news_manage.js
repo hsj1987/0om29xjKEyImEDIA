@@ -27,11 +27,15 @@ var Page = {
                 }, {
                     column : 'title',
                     label : '标题',
-                    width: '54%'
+                    width: '44%'
                 }, {
                     column : 'is_display',
                     label : '是否显示',
                     width: '5%'
+                }, {
+                    column : 'date',
+                    label : '日期',
+                    width: '10%'
                 }, {
                     column : 'create_time',
                     label : '创建时间',
@@ -68,6 +72,13 @@ var Page = {
         init : function() {
             this.view = $('#data_detail');
             Common.initSummernote(this.view.find('[name=contents]'));
+
+            this.view.find('[name=date]').datepicker({
+                autoclose: true,
+                isRTL: App.isRTL(),
+                format: "yyyy-mm-dd",
+                language: "zh-CN"
+            });
 
             // 取消
             $('#btn_cancel,.c_detail_close').click(function(){
@@ -118,6 +129,9 @@ var Page = {
                         method : 'maxLength',
                         param : 64
                     }]
+                },{
+                    name : 'date',
+                    method : ['required', 'date']
                 },
                 {
                     name : 'summary',
