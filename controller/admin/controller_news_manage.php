@@ -25,7 +25,7 @@ class controller_news_manage extends admin_controller_base
         ];
         $sort = [
             'sort_num',
-            'create_time DESC'
+            'date DESC'
         ];
         $columns = [
             'id',

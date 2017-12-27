@@ -3,7 +3,7 @@ $(function() {
 });
 
 var Page = {
-    pageSize: 3,
+    pageSize: 15,
     pager : null,
     init: function() {
         $('.c_pager').replaceWith($.pager.createHtml({

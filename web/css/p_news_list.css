@@ -21,6 +21,7 @@ body {
 .news_item .summary {
     padding-top: 0.25rem;
     font-size: 0.18rem;
+    line-height: 1.8;
 }
 .news_list .color1 {
     color: #000;

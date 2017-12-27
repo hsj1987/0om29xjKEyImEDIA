@@ -297,7 +297,7 @@ body {
     }
 }
 @media screen and (max-width: 768px){
-    #footer .right_info {
+    #footer .right_info td {
         padding-top: 1.4rem;
     }
     #footer .icp_info {
@@ -499,6 +499,12 @@ body {
 .c_text_bar img {
     max-width: 100%;
     text-align: center;
+}
+.c_text_bar iframe {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 @media screen and (max-width: 768px){
     .c_text_bar {

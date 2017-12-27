@@ -38,8 +38,8 @@
         <div class="offices">
             <div class="title">OUR OFFICES</div>
             <ul class="pages">
-                <li><a href="javascript:;" class="c_zoom_text">SHANGHAI</a></li>
-                <li><a href="javascript:;" class="c_zoom_text">BEIJING</a></li>
+                <li><a href="our_offices.html?id=1" class="c_zoom_text">SHANGHAI</a></li>
+                <li><a href="our_offices.html?id=2" class="c_zoom_text">BEIJING</a></li>
             </ul>
         </div>
     </div>
@@ -102,6 +102,16 @@
             init_big_img();
         });
         init_big_img();
+
+        // c_text_bar里的视频
+        $('.c_text_bar iframe').each(function(){
+            var w = $(this).attr('width');
+            var h = $(this).attr('height');
+            if (w && h) {
+                var tw = $(this).width();
+                $(this).height((tw*h)/w);
+            }
+        });
     });
 </script>
 {block name='foot'}{/block}

@@ -57,7 +57,7 @@ class controller_work extends controller_base
         }
 
         $db = db::main_db();
-        $columns = ['id', 'title', 'img', 'contents', 'sort_num', 'create_time'];
+        $columns = ['id', 'title', 'category_id', 'img', 'contents', 'sort_num', 'create_time'];
         $where = [
             'AND' => [
                 'is_display' => 1,
