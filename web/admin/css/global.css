@@ -16,3 +16,12 @@ table.c_tbl img {
     max-width: 60px;
     max-height: 60px;
 }
+
+/*
+.note-popover .popover .popover-content .note-color .dropdown-menu, .panel-heading.note-toolbar .note-color .dropdown-menu {
+    min-width: 164px;
+}
+.note-color .dropdown-menu .btn-group {
+    display: block;
+}
+*/

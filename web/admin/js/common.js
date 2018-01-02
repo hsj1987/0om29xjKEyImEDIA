@@ -22,6 +22,20 @@ var Common = {
         control.summernote({
             height: 500, 
             lang: 'zh-CN',
+            toolbar: [
+                ['color', ['color']],
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                // ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview']],
+                ['help', ['help']]
+            ],
             fontNames: [
                 '黑体', '楷体', '宋体', '新宋体', '仿宋', '微软雅黑',
                 "Open Sans", "sans-serif", 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
