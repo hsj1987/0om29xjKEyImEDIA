@@ -136,7 +136,7 @@ body {
     opacity: 0;
     width: 100%;
     height: 10.8rem;
-    padding-top: 1.55rem;
+    padding-top: 1.4rem;
     background: #000;
     transition: top .5s, opacity 0.2s;
     -moz-transition: top .5s, opacity 0.2s;
@@ -434,7 +434,7 @@ body {
     height: 100%;
     padding-top: 1.12rem;
 }
-.c_big_img .text1 {
+.c_big_img .text1, .c_big_img .text2 {
     font-weight: bold;
 }
 @media screen and (min-width: 320px){
@@ -538,6 +538,9 @@ body {
 .c_zoom .c_zoom_content, .c_zoom_full, .c_zoom_text {
     transition: all .3s;
 }
+.c_zoom_text2 {
+    transition: all .1s;
+}
 .c_zoom:hover .c_zoom_content {
 	-webkit-transform: scale(1.1) translate(5px,5px);
 	transform: scale(1.1) translate(5px,5px);
@@ -548,4 +551,7 @@ body {
 }
 .c_zoom_text:hover {
     font-size: 110%;
+}
+.c_zoom_text2:hover {
+    font-size: 140%;
 }

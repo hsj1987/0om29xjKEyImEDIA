@@ -21,30 +21,30 @@ class controller_work extends controller_base
         $data = $res['data'];
         $this->assign('data', $data);
         
-        $db = db::main_db();
-        $next_id = $db->get('work', 'id', [
-            'AND' => [
-                'is_display' => 1,
-                'deleted' => 0,
-                'id[!]' => $data['id'],
-                'category_id' => $data['category_id'],
-                'sort_num[>=]' => $data['sort_num'],
-                'create_time[<=]' => $data['create_time'] 
-            ]
-        ]);
-        $this->assign('next_id', $next_id);
+        $other_ids = $this->_get_other_id($data['id'], $data['category_id']);
+        $this->assign('prev_id', $other_ids['prev_id']);
+        $this->assign('next_id', $other_ids['next_id']);
+        
+    }
 
-        $prev_id = $db->get('work', 'id', [
+    public function _get_other_id($id, $category_id)
+    {
+        $db = db::main_db();
+        $ids = $db->select('work', 'id', [
             'AND' => [
                 'is_display' => 1,
                 'deleted' => 0,
-                'id[!]' => $data['id'],
-                'category_id' => $data['category_id'],
-                'sort_num[<=]' => $data['sort_num'],
-                'create_time[>=]' => $data['create_time'] 
-            ]
+                'category_id' => $category_id
+            ],
+            'ORDER' => 'sort_num, create_time desc'
         ]);
-        $this->assign('prev_id', $prev_id);
+        $index = array_search($id, $ids);
+        $prev_id = $index === 0 ? null : $ids[$index-1];
+        $next_id = $index === count($ids)-1 ? null : $ids[$index+1];
+        return [
+            'prev_id' => $prev_id,
+            'next_id' => $next_id
+        ];
     }
 
     public function get_data()
