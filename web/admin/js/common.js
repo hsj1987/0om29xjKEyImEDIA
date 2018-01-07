@@ -36,8 +36,14 @@ var Common = {
                 ['view', ['fullscreen', 'codeview']],
                 ['help', ['help']]
             ],
+            fontNamesIgnoreCheck: [
+                '黑体', '楷体', '宋体', '新宋体', '仿宋', '微软雅黑','华文黑体','华文细黑',
+                "Open Sans", "sans-serif", 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
+                'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+                'Tahoma', 'Times New Roman', 'Verdana' 
+            ],
             fontNames: [
-                '黑体', '楷体', '宋体', '新宋体', '仿宋', '微软雅黑',
+                '黑体', '楷体', '宋体', '新宋体', '仿宋', '微软雅黑','华文黑体','华文细黑',
                 "Open Sans", "sans-serif", 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
                 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
                 'Tahoma', 'Times New Roman', 'Verdana' 

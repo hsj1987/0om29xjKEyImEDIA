@@ -1,45 +1,45 @@
 @CHARSET "UTF-8";
 html {
-    font-size: 40px !important; 
+    font-size: 40px; 
 }
 @media only screen and (min-width: 768px){
     html {
-        font-size: 40px !important; 
+        font-size: 40px; 
     }
 }
 @media only screen and (min-width: 1024px){
     html {
-        font-size: 53.33px !important; 
+        font-size: 53.33px; 
     }
 }
 @media only screen and (min-width: 1280px){
     html {
-        font-size: 66.67px !important; 
+        font-size: 71.15px; 
     }
 }
 @media only screen and (min-width: 1366px){
     html {
-        font-size: 71.15px !important; 
+        font-size: 71.15px; 
     }
 }
 @media only screen and (min-width: 1440px){
     html {
-        font-size: 75px !important; 
+        font-size: 75px; 
     }
 }
 @media only screen and (min-width: 1600px){
     html {
-        font-size: 83.33px !important; 
+        font-size: 83.33px; 
     }
 }
 @media only screen and (min-width: 1680px){
     html {
-        font-size: 87.5px !important; 
+        font-size: 87.5px; 
     }
 }
 @media only screen and (min-width: 1920px){
     html {
-        font-size: 100px !important; 
+        font-size: 100px; 
     }
 }
 
@@ -303,6 +303,29 @@ body {
     #footer .icp_info {
         padding-top: 0.2rem;
     }
+}
+
+#share_weixin_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 380px;
+    margin-left: -150px;
+    margin-top: -190px;
+    z-index: 10100;
+    text-align: center;
+    border: solid 1px #aaa;
+    display: none;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+#share_weixin_modal.show {
+    display: block;
+}
+#share_weixin_modal .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;               
 }
 
 /*有底部信息栏的图片区域*/

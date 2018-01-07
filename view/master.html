@@ -54,15 +54,19 @@
         <a class="logo c_zoom_full" href="/index.html"><img src="/img/logo.png"/></a><a class="contact c_zoom_full" href="/contact_us.html">CONTACT US</a>
     </div>
     <div class="jiathis_style_32x32">
-        <a class="jiathis_button_tsina share_weibo c_zoom_full"></a><a class="jiathis_button_weixin share_weixin c_zoom_full"></a>
+        <a class="share_weibo c_zoom_full" target="_blank" href="https://weibo.com/u/5883601566?refer_flag=1001030101_&is_hot=1"></a><a class="share_weixin c_zoom_full" id="ico_share_weixin"></a>
     </div>
     <table class="right_info">
         <td>
-            © 2017 KEYIMEDIA AGENCY CO.,LTD. ALL RIGHTS RESERVED
+            © 2017 SHANGHAI KEYIMEDIA CO.,LTD. ALL RIGHTS RESERVED
         </td>
     </table>
     <div class="icp_info">网站备案/许可证号：沪ICP备13004446号-1</div>
 </div>
+</div>
+<div id="share_weixin_modal">
+    <i class="close">x</i>
+    <img src="/img/wx_qrcode.jpg"/>
 </div>
 
 
@@ -112,16 +116,21 @@
                 $(this).height((tw*h)/w);
             }
         });
+
+
+        // 底部分享窗口
+        $('#ico_share_weixin').click(function(){
+            $('#share_weixin_modal').addClass('show');
+            Utils.showModalBackdrop(function(){
+                $('#share_weixin_modal').removeClass('show');
+            });
+        });
+        $('#share_weixin_modal .close').click(function(){
+            $('#share_weixin_modal').removeClass('show');
+            Utils.hideModalBackdrop();
+        });
     });
 </script>
 {block name='foot'}{/block}
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<script>
-    var jiathis_config1 = {
-        title: "科翼传媒",
-        summary: "分享的文本摘要",
-        pic: "http://localhost/upload/big_img/1_img_1513407593.jpg"
-    };
-</script>
 </body>
 </html>

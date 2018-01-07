@@ -39,8 +39,9 @@ class controller_work extends controller_base
             'ORDER' => 'sort_num, create_time desc'
         ]);
         $index = array_search($id, $ids);
-        $prev_id = $index === 0 ? null : $ids[$index-1];
-        $next_id = $index === count($ids)-1 ? null : $ids[$index+1];
+        $last_index = count($ids)-1;
+        $prev_id = $index === 0 ? $ids[$last_index] : $ids[$index-1];
+        $next_id = $index === $last_index ? $ids[0]: $ids[$index+1];
         return [
             'prev_id' => $prev_id,
             'next_id' => $next_id
