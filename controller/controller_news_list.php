@@ -31,7 +31,11 @@ class controller_news_list extends controller_base
                 'deleted' => 0
             ]
         ];
-        $news_list = $db->get_paged('news', ['id', 'title', 'summary', 'date'], $page_no, $page_size, $where, 'sort_num, date desc');
+        $sort = [
+            'sort_num',
+            'date DESC'
+        ];
+        $news_list = $db->get_paged('news', ['id', 'title', 'summary', 'date'], $page_no, $page_size, $where, $sort);
         common::parse_data($news_list, ['date' => 'date_cn']);
         
         if ($_POST['get_total']) {

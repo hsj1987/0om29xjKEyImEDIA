@@ -29,6 +29,9 @@ var Page = {
                             param : 32
                         }]
                     },{
+                        name : 'telephone',
+                        method : ['required', 'telephone']
+                    },{
                         name : 'position',
                         method : ['required', {
                             method : 'minLength',

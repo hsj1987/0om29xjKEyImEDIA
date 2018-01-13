@@ -46,6 +46,7 @@ class controller_recruit extends controller_base
         $subject = '职位申请（来自官网）';
         $content = '<div style="font-size:14px; color: #555;max-width: 600px">';
         $content .= '<b style="color: #000;">NAME:</b> ' . $_POST['name'] . '<br/><br/>';
+        $content .= '<b style="color: #000;">TELEPHONE :</b> ' . $_POST['telephone'] . '<br/><br/>';
         $content .= '<b style="color: #000;">APPLY FOR POSITION:</b> ' . $_POST['position'] . '<br/><br/>';
         $content .= '<b style="color: #000;">SELF INTRODUCTION:</b> ' . nl2br($_POST['introduction']) . '<br/><br/>';
         $content .= '</div>';

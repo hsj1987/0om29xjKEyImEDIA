@@ -3904,8 +3904,8 @@
       async.createImage(sUrl, filename).then(function ($image) {
         beforeCommand($editable);
         $image.css({
-          display: '',
-          width: Math.min($editable.width(), $image.width())
+          display: ''/*,
+          width: Math.min($editable.width(), $image.width())*/
         });
         range.create().insertNode($image[0]);
         $image.wrap('<div style="text-align: center"></div>');

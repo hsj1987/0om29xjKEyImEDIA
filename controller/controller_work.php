@@ -36,7 +36,7 @@ class controller_work extends controller_base
                 'deleted' => 0,
                 'category_id' => $category_id
             ],
-            'ORDER' => 'sort_num, create_time desc'
+            'ORDER' => ['sort_num', 'create_time DESC']
         ]);
         $index = array_search($id, $ids);
         $last_index = count($ids)-1;
@@ -64,7 +64,7 @@ class controller_work extends controller_base
                 'is_display' => 1,
                 'deleted' => 0
             ],
-            'ORDER' => 'sort_num, create_time desc'
+            'ORDER' => ['sort_num', 'create_time DESC']
         ];
         if (!$id) { 
             $where['AND']['category_id'] = $cid;

@@ -27,7 +27,7 @@ class controller_work_index extends controller_base
                 'is_display' => 1,
                 'deleted' => 0
             ],
-            'ORDER' => 'sort_num, create_time desc'
+            'ORDER' => ['sort_num', 'create_time DESC']
         ];
         $works = $db->select('work', ['id', 'index_img', 'index_logo', 'index_name', 'index_title'], $where);
         common::parse_data($works, ['index_title' => 'nl2br']);
