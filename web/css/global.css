@@ -27,6 +27,41 @@ img {
     clear: both;
 }
 
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: normal;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+    filter: alpha(opacity=20); 
+    font-style: normal;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: alpha(opacity=50); 
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10049;
+    background-color: #000; 
+}
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0); 
+}
+.modal-backdrop.in {
+      opacity: 0.5;
+      filter: alpha(opacity=50); 
+}
 /*加载等待*/
 #c_loading {
     position: fixed;
