@@ -16,7 +16,7 @@ var Page = {
                 if ($.inArray(id, ['1','2','3','6']) != -1) {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link').addClass('show');
-                    $('#div_img .fileinput-preview').toggleClass('img_h2', id == 1);
+                    $('#div_img .fileinput-preview').removeClass('img_h2').removeClass('img_h3').addClass(id == 1 ? 'img_h2' :  id == 6 ? 'img_h3' : '');
                     $('#div_img .img_size').text(id == 1 ? '640*1080' :  id == 6 ? '1920*920' : '640*540');
                 } else {
                     $('#div_img,#div_logo,#div_name,#div_title,#div_link,#div_desc').removeClass('show');
