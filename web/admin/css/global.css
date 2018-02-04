@@ -17,11 +17,9 @@ table.c_tbl img {
     max-height: 60px;
 }
 
-/*
-.note-popover .popover .popover-content .note-color .dropdown-menu, .panel-heading.note-toolbar .note-color .dropdown-menu {
-    min-width: 164px;
+.fileinput-preview-size1 {
+    box-sizing: content-box;
+    width: 192px;
+    height: 92px;
+    line-height: 92px;
 }
-.note-color .dropdown-menu .btn-group {
-    display: block;
-}
-*/
