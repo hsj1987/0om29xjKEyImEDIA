@@ -13,7 +13,7 @@ class controller_clients extends controller_base
     
     public function action_index()
     {
-        $this->assign('page_name', 'OUT CLIENTS');
+        $this->assign('page_name', 'OUR CLIENTS');
 
         $big_img = model::get_big_img_config(5);
         common::parse_data($big_img, ['text1' => 'nl2br', 'text2' => 'nl2br']);
