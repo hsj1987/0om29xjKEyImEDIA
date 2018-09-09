@@ -16,6 +16,9 @@ table.c_tbl img {
     max-width: 60px;
     max-height: 60px;
 }
+table.c_tbl .td_command {
+    text-align: center;
+}
 
 .fileinput .fileinput-preview {
     display: table-cell !important;

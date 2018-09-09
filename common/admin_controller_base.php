@@ -64,6 +64,10 @@ class admin_controller_base extends \common\frame\web\controller_base
                         'name' => '奖项管理',
                         'url' => 'award_manage'
                     ],
+                    [
+                        'name' => '视频管理',
+                        'url' => 'video_manage'
+                    ],
                 ]
             ];
             if (user::curr_username() == 'admin') {
