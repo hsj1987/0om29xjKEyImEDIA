@@ -47,7 +47,6 @@
 .video_list .tab_contents .video_item {
     float: left;
     width: 3.70rem;
-    /*height: 4rem;*/
     padding: 0.13rem;
 }
 .video_list .tab_contents .video_item .video {
@@ -73,14 +72,21 @@
     font-weight: bold;
     padding-top: 0.11rem;
     text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .video_list .tab_contents .video_item .summary {
     font-size: 0.16rem;
     padding-top: 0.13rem;
+    line-height: 0.2rem;
+    height: 0.53rem;
     text-align: center;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 
@@ -90,6 +96,9 @@
     }
     .video_list .tab_contents .video_item .summary {
         font-size: 14px;
+        line-height: 16px;
+        height: 40px;
+        padding-top: 8px;
     }
 }
 @media screen and (max-width: 1024px) {
@@ -102,7 +111,9 @@
     }
     .video_list .tab_contents .video_item .summary {
         font-size: 12px;
-        padding-top: 0px;
+        line-height: 14px;
+        height: 32px;
+        padding-top: 4px;
     }
 }
 @media screen and (max-width: 768px) {
@@ -164,7 +175,7 @@
     .video_list .tab_contents .video_item {
         width: 100%;
         height: auto;
-        padding: 0;
+        padding: 5px 0;
         float: none;
     }
     .video_list .tab_contents .video_item .video {
@@ -181,13 +192,16 @@
     }
     .video_list .tab_contents .video_item .title {
         font-weight: bold;
-        padding-top: 0.11rem;
+        padding: 5px 5px 0;
         text-align: center;
     }
     .video_list .tab_contents .video_item .summary {
-        padding-top: 0rem;
-        padding-bottom: 0.3rem;
+        font-size: 12px;
+        line-height: 14px;
+        height: 30px;
+        padding: 2px 5px 0;
         text-align: center;
+        display: none;
     }    
 }
 @media screen and (max-width: 320px) {

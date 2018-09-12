@@ -155,14 +155,14 @@ var Page = {
                     name : 'title',
                     method : [{
                         method : 'maxLength',
-                        param : 64
+                        param : 13
                     }]
                 },
                 {
                     name : 'summary',
                     method : [{
                         method : 'maxLength',
-                        param : 256
+                        param : 30
                     }]
                 },
                 {
@@ -214,7 +214,7 @@ var Page = {
     upload : {
         view : null,
         id : null,
-
+        maxSize : 400,
         init : function() {
             this.view = $('#upload_video');
             
@@ -222,7 +222,7 @@ var Page = {
                 url: '/admin/video_manage/upload_video',
                 dataType: 'json',
                 add: function(e, data) {
-                    data.context = $('#btn_upload').click(function() {
+                    data.context = $('#btn_upload').unbind('click').bind('click', function() {
                         $(this).attr('disabled', 'disabled');
                         Page.upload.view.find('.from_group_progress').css('visibility', 'visible');
                         data.submit();
@@ -233,14 +233,23 @@ var Page = {
                         Page.upload.save(data.files[0].name);
                     }
                     $('#btn_upload').removeAttr('disabled');
+                    Utils.showAlertTip('上传成功！');
                 },
                 progressall: function(e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     Page.upload.view.find('.progress-bar').text(progress + '%').css('width', progress +'%');
                 }
             });
-
-            this.view.find('.fileinput :file').on("change fileclear filereset fileremoved", function(event) {
+            
+            this.view.find('.fileinput :file').on("change", function(event) {
+                Page.upload.clearProgress();
+                if($(this)[0].files.length > 0 && $(this)[0].files[0].size/1048576 > Page.upload.maxSize) {
+                    Utils.showAlert('文件不能大于' + Page.upload.maxSize + 'MB', function() {
+                        Page.upload.view.find('.fileinput').fileinput('clear');
+                    });
+                }
+            });
+            this.view.find('.fileinput :file').on("fileclear filereset fileremoved", function(event) {
                 Page.upload.clearProgress();
             });
 
