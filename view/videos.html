@@ -1,5 +1,11 @@
 {extends file='master.html'}
+{block name='frame_head'}
+<link href="/frame/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/frame/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/frame/global/css/components.min.css" rel="stylesheet" type="text/css">
+{/block}
 {block name='head'}
+<link href="/plugins/datatbl/css/pager.css?v={$version}" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/css/p_videos.css?v={$version}">
 {/block}
 
@@ -18,27 +24,17 @@
 <div id="p_vedios">
     <div id="video_list" class="video_list">
         <ul class="tabs c_clear">
-            {foreach $categorys as $k => $category}
-                <li class="tab_item {if $k == 0}curr{/if}" category_id="{$category['id']}">{$category['name']}</li>
+            {foreach $categorys as $id => $name}
+                <li class="tab_item {if $id == 1}curr{/if}" category_id="{$id}">{$name}</li>
             {/foreach}
         </ul>
         <div class="tab_contents">
-            {foreach $categorys as $k => $category}
-                <div class="tab_content c_clear {if $k == 0}curr{/if}" category_id="{$category['id']}">
-                    {if count($category['videos'])}
-                        {foreach $category['videos'] as $video}
-                            <div class="video_item">
-                                <div class="video">
-                                    <video src="/upload/video/{$video['video']}" preload="false"  controls="controls" preload="metadata"></video>
-                                </div>
-                                <div class="ico"><img src="/img/ico9.png"/></div>
-                                <div class="title">{$video['title']}</div>
-                                <div class="summary">{$video['summary']}</div>
-                            </div>
-                        {/foreach}
-                    {else}
-                        <div class="no_videos">暂无视频</div>
-                    {/if}
+            {foreach $categorys as $id => $name}
+                <div class="tab_content {if $id == 1}curr{/if}" category_id="{$id}">
+                    <div class="video_items c_clear"></div>
+                    <div class="c_pager_bar clearfix">
+                        <span class="c_pager"></span>
+                    </div>
                 </div>
             {/foreach}
         </div>
@@ -47,17 +43,6 @@
 {/block} 
 {block name='foot'}
 <script src="/js/p_videos.js?v={$version}"></script>
-<script>
-    function setVideoSize() {
-        var ww = $(window).width();
-        var w = $('.video').width();
-        var radio = 1.777777777777778;
-        var h = w / radio;
-        $('.video').css('height', h + 'px');
-        $('video').attr('width', w);
-        $('video').attr('height', h);
-    }
-    setVideoSize();
-</script>
+<script src="/plugins/datatbl/js/pager.js?v={$version}"></script>
 <script src="/plugins/html5media/html5media.min.js"></script>
 {/block}

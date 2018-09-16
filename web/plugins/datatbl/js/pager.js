@@ -70,6 +70,7 @@
 	var OPTIONS = {
 		settings : {
 			//allowGoTo : true,// 允许跳转到某页
+			onePageShow: true,
 			perCount : 20,//每页多少行
 			onPageChange : null//切换页码
 		}
@@ -164,10 +165,9 @@
 	// 初始化
 	pager.prototype.initPages = function(totalCount) {
 		$this = this;
-		//$this.domNode.toggle(totalCount>0);
-		$this.o.pager_bar.toggle(totalCount>0);
-		if(totalCount>0){
-			var pageCount = Math.ceil(totalCount/ $this.settings.perCount);
+		var pageCount = Math.ceil(totalCount / $this.settings.perCount);
+		$this.o.pager_bar.toggle(($this.settings.onePageShow && pageCount == 1) || (pageCount > 1));
+		if(totalCount > 0 ) {
 			var pageNo = 1;
 		    $this.o.txtGo.val(pageNo);
 			$this.o.spanRecordCount.text(totalCount);
